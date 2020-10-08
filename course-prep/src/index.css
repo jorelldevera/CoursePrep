@@ -5,6 +5,22 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url('https://www.bellingham.org/wp-content/uploads/2019/09/Western-Washington-University-Bellingham-Whatcom-County_8_50.jpg');
+}
+
+.app-container {
+	/* anything inside of the container will be centered */
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: 100vh;
+	align-items: center;
+}
+
+.navigation-container {
+  background-color: white;
+  padding-top: 24px;
+  padding-bottom: 24px;
 }
 
 code {

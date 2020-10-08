@@ -24,6 +24,7 @@ const NavigationAuth = () => (
             <li>
                 <Link to={ROUTES.USER_TEST}>Users</Link>
             </li>
+            
             <li>
                 <SignOutButton />
             </li>
@@ -38,6 +39,9 @@ const NavigationNonAuth = () => (
         </li>
         <li>
             <Link to={ROUTES.LOG_IN}>Login</Link>
+        </li>
+        <li>
+            <Link to={ROUTES.QUIZ_EXAMPLE}>Quiz Example</Link>
         </li>
     </ul>
 )

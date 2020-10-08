@@ -8,6 +8,7 @@ import LandingPage from '../Landing';
 import SignUpPage from '../SignUp';
 import LoginPage from '../Login';
 import UserPage from '../UserTest';
+import QuizExample from '../QuizExample';
 
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
@@ -15,14 +16,19 @@ import { withAuthentication } from '../Session';
 const App = () =>  (
     <Router>
         <div>
-            <Navigation />
+            <div className="navigation-container">
+                <Navigation /> 
+            </div>
 
-            <hr />
+            {/* <hr /> */}
 
-            <Route exact path={ROUTES.LANDING} component={LandingPage} />
-            <Route path={ROUTES.SIGN_UP} component={SignUpPage}/>
-            <Route path={ROUTES.LOG_IN} component={LoginPage}/>
-            <Route path={ROUTES.USER_TEST} component={UserPage}/>
+            <div className="app-container">
+                <Route exact path={ROUTES.LANDING} component={LandingPage} />
+                <Route path={ROUTES.SIGN_UP} component={SignUpPage}/>
+                <Route path={ROUTES.LOG_IN} component={LoginPage}/>
+                <Route path={ROUTES.USER_TEST} component={UserPage}/>
+                <Route path={ROUTES.QUIZ_EXAMPLE} component={QuizExample}/>
+            </div>
         </div>
     </Router>
 );

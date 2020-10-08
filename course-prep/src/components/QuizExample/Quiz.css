@@ -1,0 +1,19 @@
+.quiz-container {
+    background: #FCFAFA;
+    height: 90%;
+    width: 480px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    padding: 24px;
+    box-shadow: 2px 4px 16px 0 black;
+}
+
+.quiz-header-text {
+    color: #0A0B09;
+}
+
+.questions-container {
+    overflow-y: auto;
+}
