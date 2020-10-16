@@ -1,0 +1,4 @@
+.signup-fields {
+    display: flex;
+    flex-direction: vertical;
+}

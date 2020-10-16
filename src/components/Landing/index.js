@@ -1,10 +1,13 @@
 
 import React from 'react';
+import './landing.css';
 
-const LandingPage = () => (
-    <div>
-        <h1>Landing Page</h1>
-    </div>
-);
+function LandingPage () {
+    return (
+        <div>
+            <h1 className='landing-header'>Landing Page</h1>
+        </div>
+    );
+}
 
 export default LandingPage;

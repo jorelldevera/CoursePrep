@@ -3,18 +3,20 @@
     height: 130px;
     display: flex;
     justify-content: space-between;
-}
-
-.top-bar-left{
-    width: 80%;
-}
-
-.top-bar-right{
-    width: 10%;
-    display: flex;
-    justify-content: center;
     align-items: center;
 }
 
-.sign-in-btn {
+.top-bar-left{
+    width: 500px;
+}
+
+.top-bar-left h1 {
+    color: white;
+    margin-left: 50px;
+}
+
+.top-bar-right{
+    width: 200px;
+    display: flex;
+    justify-content: center;
 }

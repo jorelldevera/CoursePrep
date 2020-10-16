@@ -10,7 +10,6 @@ import LoginPage from '../Login';
 import UserPage from '../UserTest';
 import QuizPage from '../QuizExample';
 import TopBar from '../TopBar'
-import LoginPopUp from '../PopUp';
 
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
@@ -22,7 +21,7 @@ function App()  {
             <div>
                 <div className="navigation-container">
                     <TopBar />
-                    <Navigation /> 
+                    {/* <Navigation />  */}
                 </div>
                 {/* <hr /> */}
 
