@@ -1,0 +1,20 @@
+.top-bar-container {
+    background-color:#000000;
+    height: 130px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.top-bar-left{
+    width: 80%;
+}
+
+.top-bar-right{
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sign-in-btn {
+}
