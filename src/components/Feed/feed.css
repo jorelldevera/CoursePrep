@@ -1,0 +1,25 @@
+.feed-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+.feed-container div {
+    box-shadow: 5px 5px 5px grey;
+}
+
+.left-menu {
+    width: 297px;
+    height: 766px;
+}
+
+.center-feed {
+    width: 991px;
+    height: 766px;
+    margin-right: 100px;
+    display: flex;
+    flex-direction: column;
+}
+
+.center-feed h1 {
+    text-align: center;
+}

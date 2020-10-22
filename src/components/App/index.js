@@ -10,6 +10,7 @@ import LoginPage from '../Login';
 import UserPage from '../UserTest';
 import QuizPage from '../QuizExample';
 import TopBar from '../TopBar'
+import Feed from '../Feed';
 
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
@@ -20,12 +21,14 @@ function App()  {
         <Router>
             <div>
                 <div className="navigation-container">
+                    {/* need some function to check if we're logged in so we can change the header */}
                     <TopBar />
                     {/* <Navigation />  */}
                 </div>
                 {/* <hr /> */}
 
                 <div className="app-container">
+                    <Route path={ROUTES.FEED} component={Feed} />
                     <Route exact path={ROUTES.LANDING} component={LandingPage} />
                     <Route path={ROUTES.SIGN_UP} component={SignUpPage}/>
                     <Route path={ROUTES.LOG_IN} component={LoginPage}/>
