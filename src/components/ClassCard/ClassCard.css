@@ -1,0 +1,19 @@
+.class-card-container{
+    width: 450px;
+    height: 290px;
+    background-color: #764EE9;
+    border-radius: 8px;
+    color: white;
+    position: relative;
+}
+
+.class-card-container div{
+    box-shadow: 5px 5px 5px grey;
+}
+
+.class-title{
+    padding-left: 10px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}

@@ -11,6 +11,7 @@ import UserPage from '../UserTest';
 import QuizPage from '../QuizExample';
 import TopBar from '../TopBar'
 import Feed from '../Feed';
+import Dashboard from '../Dashboard';
 
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
@@ -28,8 +29,9 @@ function App()  {
                 {/* <hr /> */}
 
                 <div className="app-container">
-                    <Route path={ROUTES.FEED} component={Feed} />
                     <Route exact path={ROUTES.LANDING} component={LandingPage} />
+                    <Route path={ROUTES.DASH} component={Dashboard}/>
+                    <Route path={ROUTES.FEED} component={Feed} />
                     <Route path={ROUTES.SIGN_UP} component={SignUpPage}/>
                     <Route path={ROUTES.LOG_IN} component={LoginPage}/>
                     <Route path={ROUTES.QUIZ_TEST} component={QuizPage}/>
