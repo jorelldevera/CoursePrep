@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import firebase from 'firebase'
+import firebase from 'firebase';
 import Button from '@material-ui/core/Button';
 
 function QuestionCard() {
@@ -12,6 +12,7 @@ function QuestionCard() {
     const [correctAnswer, setCorrectAnswer] = useState([]);
 
      useEffect( () => {
+        // console.log(firebase.auth().W)
         firebase.database().ref("multiple_choice/1").once('value').then(function(snapshot){
             setText(snapshot.val().text);
             setOptions(snapshot.val().possible_answers);

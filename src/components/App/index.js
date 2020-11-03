@@ -29,15 +29,6 @@ function App(props)  {
 
     },[])
 
-    console.log(AuthUserContext)
-
-    if(AuthUserContext._currentValue){
-        console.log("yes")
-    }
-    else{
-        console.log("no")
-    }
-
     return(
         <Router>
             <div>
