@@ -18,7 +18,7 @@ function QuestionCard() {
             setCorrectAnswer(snapshot.val().correct_answer)
             //console.log(snapshot.val().possible_answers)
         })
-    })
+    }, [])
 
     // firebase.database().ref("multiple_choice/1").once('value').then(function(snapshot){
     //     setText(snapshot.val().text)
