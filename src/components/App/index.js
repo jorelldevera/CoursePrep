@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { BrowserRouter as Router,
-         Route,
+         Route, Redirect
 } from 'react-router-dom';
-
+import { withFirebase } from '../Firebase';
 import Navigation from '../Navigation';
 import LandingPage from '../Landing';
 import SignUpPage from '../SignUp';
@@ -11,29 +11,45 @@ import UserPage from '../UserTest';
 import QuizPage from '../QuizExample';
 import TopBar from '../TopBar'
 import Feed from '../Feed';
-
+import Dashboard from '../Dashboard';
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
+import { AuthUserContext } from '../Session';
 
-function App()  {
+function App(props)  {
+
+
+    const[authUser,setAuthUser] = useState([]);
+
+    useEffect( () => {
+        props.firebase.auth.onAuthStateChanged(authUser => {
+            authUser
+                ? setAuthUser({authUser})
+                : setAuthUser({authUser : null});
+        });
+
+    },[])
 
     return(
         <Router>
             <div>
                 <div className="navigation-container">
-                    {/* need some function to check if we're logged in so we can change the header */}
                     <TopBar />
-                    {/* <Navigation />  */}
                 </div>
-                {/* <hr /> */}
-
                 <div className="app-container">
-                    <Route path={ROUTES.FEED} component={Feed} />
-                    <Route exact path={ROUTES.LANDING} component={LandingPage} />
-                    <Route path={ROUTES.SIGN_UP} component={SignUpPage}/>
-                    <Route path={ROUTES.LOG_IN} component={LoginPage}/>
-                    <Route path={ROUTES.QUIZ_TEST} component={QuizPage}/>
-                    <Route path={ROUTES.USER_TEST} component={UserPage}/>
+                <Route exact path={ROUTES.LANDING} render={()=>(
+                    !AuthUserContext._currentValue ? <LandingPage/> : (<Redirect to={ROUTES.DASH}/>)
+                )} />
+                <Route path={ROUTES.DASH} render={()=>(
+                    AuthUserContext._currentValue ? <Dashboard/> : (<Redirect to={ROUTES.LANDING}/>)
+                )}/>
+                <Route path={ROUTES.FEED} render={()=>(
+                    AuthUserContext._currentValue ? <Feed/> : (<Redirect to={ROUTES.LANDING}/>)
+                )}/>
+                <Route path={ROUTES.SIGN_UP} component={SignUpPage}/>
+                <Route path={ROUTES.LOG_IN} component={LoginPage}/>
+                <Route path={ROUTES.QUIZ_TEST} component={QuizPage}/>
+                <Route path={ROUTES.USER_TEST} component={UserPage}/>
                 </div>
             </div>
         </Router>

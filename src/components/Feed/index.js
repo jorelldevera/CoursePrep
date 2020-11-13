@@ -1,19 +1,12 @@
 import React from 'react';
 import './feed.css';
 import QuestionCard from '../QuestionCard';
+import Sidebar from '../Sidebar';
 
 function Feed() {
     return (
         <div className="feed-container">
-            <div className="left-menu">
-            this is the left menu
-                <div className="my-quizzes">
-
-                </div>
-                <div className="course-quizzes">
-
-                </div>
-            </div>
+            <Sidebar/>
             <div className="center-feed">
                 <h1>Course Title</h1>
                 <div className="feed-options">

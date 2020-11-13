@@ -14,14 +14,12 @@ const firebaseConfig = {
   };
 
   class Firebase {
-
       constructor() {
           app.initializeApp(firebaseConfig);
 
           this.auth = app.auth();
           this.db = app.database();
       }
-
       /*
         Authentication API
       */
@@ -42,7 +40,6 @@ const firebaseConfig = {
         User API
       */
       user = uid => this.db.ref(`user_test/${uid}`);
-
       users = () => this.db.ref('user_test');
   }
 

@@ -1,0 +1,25 @@
+.dashboard-container{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+
+.dashboard-center{
+    padding-left: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.classes-grid{
+    width: 991px;
+    height: 766px;
+    margin-right: 100px;
+    display: grid;
+    grid-template-columns: 400px 400px;
+    grid-row: auto auto;
+    grid-column-gap: 60px;
+    grid-row-gap: 60px;
+}

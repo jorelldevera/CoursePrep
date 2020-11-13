@@ -70,6 +70,7 @@ class SignUpFormBase extends Component {
             passwordOne !== passwordTwo ||
             passwordOne === '' ||
             email === '' ||
+            email.substring(email.indexOf('@') + 1) !== "wwu.edu" ||
             username === '';
 
         return (
