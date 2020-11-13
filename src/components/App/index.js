@@ -14,7 +14,8 @@ import Feed from '../Feed';
 import Dashboard from '../Dashboard';
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
-import { AuthUserContext } from '../Session'
+import { AuthUserContext } from '../Session';
+
 function App(props)  {
 
 
@@ -36,15 +37,12 @@ function App(props)  {
                     <TopBar />
                 </div>
                 <div className="app-container">
-                {/* <Route exact path={ROUTES.LANDING} component={LandingPage} /> */}
                 <Route exact path={ROUTES.LANDING} render={()=>(
                     !AuthUserContext._currentValue ? <LandingPage/> : (<Redirect to={ROUTES.DASH}/>)
                 )} />
-                {/* <Route path={ROUTES.DASH} component={Dashboard}/> */}
                 <Route path={ROUTES.DASH} render={()=>(
                     AuthUserContext._currentValue ? <Dashboard/> : (<Redirect to={ROUTES.LANDING}/>)
                 )}/>
-                {/* <Route path={ROUTES.FEED} component={Feed} /> */}
                 <Route path={ROUTES.FEED} render={()=>(
                     AuthUserContext._currentValue ? <Feed/> : (<Redirect to={ROUTES.LANDING}/>)
                 )}/>

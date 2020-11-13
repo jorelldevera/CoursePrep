@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 
 function QuestionCard() {
 
-    const[text,setText] = useState([]);
+    const [text,setText] = useState([]);
     const [options, setOptions] = useState([]);
     const [buttonDisabled, setButtonDisabled] = useState(true);
     const [showResult, setShowResult] = useState(false);
