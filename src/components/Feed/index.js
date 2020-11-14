@@ -1,9 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import firebase from 'firebase';
 import './feed.css';
 import QuestionCard from '../QuestionCard';
 import Sidebar from '../Sidebar';
+import { useList } from 'react-firebase-hooks/database';
+
 
 function Feed() {
+
+    const [snapshots, loading, error] = useList(firebase.database().ref("question_metadata").orderByChild("creation_time").limitToLast(25));
+
     return (
         <div className="feed-container">
             <Sidebar/>
@@ -14,6 +20,7 @@ function Feed() {
                 </div>
                 <div className="question-stream">
                     question stream
+                    {snapshots && snapshots.map(question => <QuestionCard data={question}/>)}
                     <QuestionCard/>
                 </div>
             </div>
