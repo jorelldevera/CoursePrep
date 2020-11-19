@@ -18,7 +18,7 @@ function CreateQuestionButton () {
     var modal;
     useEffect( () => {
         modal = document.getElementById("questionModal");
-    },)
+    }, )
     if(modal)(
         console.log("modal not null")
     )
@@ -37,6 +37,7 @@ function CreateQuestionButton () {
 
     function handleSpanClick(){
         modal.style.display = "none";
+        setTypeSelected("")
     }
     function handleSubmit(){
 
@@ -52,7 +53,7 @@ function CreateQuestionButton () {
     function getQuestionType(){
         var question;
         if(typeSelected == "fill_in_blank"){
-            question = <CreateFillInBlank/>;
+            question = <CreateFillInBlank closeOnSubmit={handleSpanClick}/>;
         }
         else if(typeSelected == "multiple_choice"){
             question = <CreateMultipleChoice/>;
