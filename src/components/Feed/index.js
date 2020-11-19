@@ -20,8 +20,8 @@ function Feed() {
                 </div>
                 <div className="question-stream">
                     question stream
-                    {snapshots && snapshots.map(question => <QuestionCard data={question}/>)}
-                    <QuestionCard/>
+                    {snapshots && snapshots.map(question => <QuestionCard key={question.key} id={question.key} data={question.val()}/>)}
+                    {/* <QuestionCard/> */}
                 </div>
             </div>
             <div className="right-menu">
