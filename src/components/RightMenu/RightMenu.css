@@ -1,0 +1,22 @@
+.right-container {
+  width: 200px;
+  height: 766px;
+  padding-right: 1px;
+  padding-right: 20px;
+  box-shadow: 5px 5px 5px grey;
+}
+.right-sort-container {
+  width: 200px;
+  height: 40px;
+  background-color: #764ee9;
+  border-radius: 8px;
+  color: white;
+  position: relative;
+}
+.sort-button {
+  width: 450px;
+  height: 766px;
+  padding-left: 20px;
+  background-color: #764ee9;
+  box-shadow: 5px 5px 5px grey;
+}
