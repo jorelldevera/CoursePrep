@@ -2,6 +2,7 @@ import React from 'react';
 import './feed.css';
 import QuestionCard from '../QuestionCard';
 import Sidebar from '../Sidebar';
+import CreateQuestionButton from '../CreateQuestionButton';
 
 function Feed() {
     return (
@@ -18,7 +19,7 @@ function Feed() {
                 </div>
             </div>
             <div className="right-menu">
-                spacing
+                <CreateQuestionButton/>
             </div>
         </div>
     );
