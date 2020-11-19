@@ -1,6 +1,21 @@
 .sidebar-container {
-    width: 297px;
-    height: 766px;
-    padding-left: 20px;
-    box-shadow: 5px 5px 5px grey;
+  width: 297px;
+  height: 766px;
+  padding-left: 20px;
+  box-shadow: 5px 5px 5px grey;
+}
+.dash-card-container {
+  width: 200px;
+  height: 80px;
+  background-color: #764ee9;
+  border-radius: 8px;
+  color: white;
+  position: relative;
+}
+.dash-button {
+  width: 450px;
+  height: 766px;
+  padding-left: 20px;
+  background-color: #764ee9;
+  box-shadow: 5px 5px 5px grey;
 }
