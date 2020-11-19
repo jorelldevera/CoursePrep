@@ -19,24 +19,31 @@ function CreateFillInBlank({closeOnSubmit}) {
 
     const [text, setText] = useState("");
     const [authAnswer, setAuthAnswer] = useState("");
+    const [hint1, setHint1] = useState("")
+    const [hint2, setHint2] = useState("")
+    const [hint3, setHint3] = useState("")
+    const [hint4, setHint4] = useState("")
+    const [hint5, setHint5] = useState("")
 
     var questionMetaData = {
         avg_score: 0,
         course_ID: 1,
         creation_time: 0,
         department_ID: 1,
-        tags: null,
+        tags: [],
         text: "",
         times_answered: 0,
         type: 2,
     }
 
-    var fillInBlankData = {
+    var questionData = {
         author_ID: 1,
         author_answer: "",
-        hints: null,
+        hints: [],
         text: "",
     }
+
+
 
     function handleSubmit(){
         if (text == "" || authAnswer == "") {
@@ -45,9 +52,14 @@ function CreateFillInBlank({closeOnSubmit}) {
         else {
             console.log("testing pushing...")
             console.log(text);
-            fillInBlankData.author_answer = authAnswer;
-            fillInBlankData.text = text;
-            fillInBlankData.author_ID = firebase.auth().W;
+            questionData.author_answer = authAnswer;
+            questionData.text = text;
+            questionData.author_ID = firebase.auth().W;
+            if (hint1 != "") {questionData.hints.push(hint1)}
+            if (hint2 != "") {questionData.hints.push(hint2)}
+            if (hint3 != "") {questionData.hints.push(hint3)}
+            if (hint4 != "") {questionData.hints.push(hint4)}
+            if (hint5 != "") {questionData.hints.push(hint5)}
             questionMetaData.text = text;
             questionMetaData.creation_time = Date.now();
             
@@ -55,7 +67,7 @@ function CreateFillInBlank({closeOnSubmit}) {
             // console.log(key);
             var updates = {};
             updates["question_metadata/" + key] = questionMetaData;
-            updates["fill_in_blank/" + key] = fillInBlankData;
+            updates["fill_in_blank/" + key] = questionData;
             firebase.database().ref().update(updates);
             closeOnSubmit();
         }
@@ -70,6 +82,24 @@ function CreateFillInBlank({closeOnSubmit}) {
             <h2>Enter Author Answer:</h2>
 
             <input type="text" placeholder="Your answer..." onChange={(e)=>{setAuthAnswer(e.target.value)}}/>
+
+            <h2>Enter hints (optional):</h2>
+
+            <label for="hint1">1: </label>
+            <input type="text" id="hint1" placeholder="" onChange={(e)=>{setHint1(e.target.value)}}/><br/>
+
+            <label for="hint2">2: </label>
+            <input type="text" id="hint2" placeholder="" onChange={(e)=>{setHint2(e.target.value)}}/><br/>
+
+            <label for="hint3">3: </label>
+            <input type="text" id="hint3" placeholder="" onChange={(e)=>{setHint3(e.target.value)}}/><br/>
+
+            <label for="hint4">4: </label>
+            <input type="text" id="hint4" placeholder="" onChange={(e)=>{setHint4(e.target.value)}}/><br/>
+
+            <label for="hint5">5: </label>
+            <input type="text" id="hint5" placeholder="" onChange={(e)=>{setHint5(e.target.value)}}/><br/>
+
 
             <Button id = "submit button" variant="contained" disabled = {buttonDisabled} onClick={()=> {handleSubmit()}}>Submit</Button>
         </React.Fragment>
