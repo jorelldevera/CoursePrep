@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import firebase from 'firebase';
 import Button from '@material-ui/core/Button';
 
-function CreateTrueFalse() {
+function CreateTrueFalse({closeOnSubmit}) {
 
     /**
      * 
@@ -50,6 +50,7 @@ function CreateTrueFalse() {
         trueFalseData.author_ID = firebase.auth().W;
         questionMetaData.text = text;
         questionMetaData.creation_time = Date.now();
+        closeOnSubmit();
 
         
         var key = firebase.database().ref('question_metadata/').push().key;

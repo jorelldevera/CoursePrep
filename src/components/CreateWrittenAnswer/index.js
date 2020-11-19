@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import firebase from 'firebase';
 import Button from '@material-ui/core/Button';
 
-function CreateWrittenAnswer() {
+function CreateWrittenAnswer({closeOnSubmit}) {
 
     /**
      * 
@@ -57,6 +57,7 @@ function CreateWrittenAnswer() {
             updates["question_metadata/" + key] = questionMetaData;
             updates["written_answer/" + key] = writtenAnswerData;
             firebase.database().ref().update(updates);
+            closeOnSubmit();
         }
     }
 

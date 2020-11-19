@@ -3,7 +3,7 @@ import firebase from 'firebase';
 import Button from '@material-ui/core/Button';
 
 
-function CreateMultipleChoice() {
+function CreateMultipleChoice({closeOnSubmit}) {
      /**
      * 
      * should metadata have user id field?
@@ -83,6 +83,7 @@ function CreateMultipleChoice() {
         updates["question_metadata/" + key] = questionMetaData;
         updates["multiple_choice/" + key] = multipleChoiceData;
         firebase.database().ref().update(updates);
+        closeOnSubmit();
     }
 
     function createAnswer(i){
