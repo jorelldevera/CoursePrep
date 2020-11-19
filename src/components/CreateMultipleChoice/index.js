@@ -68,14 +68,7 @@ function CreateMultipleChoice() {
         multipleChoiceData.author_ID = firebase.auth().W;
         questionMetaData.text = text;
         questionMetaData.creation_time = Date.now();
-        for(const property in multipleChoiceData.possible_answers){
-            //console.log('${property}: ${object[property]}');
-            console.log(multipleChoiceData.possible_answers[{property}])
-            // if(i === {property}.property){
-            //     multipleChoiceData.possible_answers.property = e;
-            // }
-            //console.log(multipleChoiceData.possible_answers[{property}]);
-        }
+        console.log(multipleChoiceData.possible_answers);
         
         var key = firebase.database().ref('question_metadata/').push().key;
         // console.log(key);
