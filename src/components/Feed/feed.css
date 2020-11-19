@@ -15,7 +15,7 @@
 .center-feed {
   width: 991px;
   height: 766px;
-  margin-right: 100px;
+  margin-right: 10px;
   display: flex;
   flex-direction: column;
 }

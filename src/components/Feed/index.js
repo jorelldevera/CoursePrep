@@ -2,6 +2,7 @@ import React from "react";
 import "./feed.css";
 import QuestionCard from "../QuestionCard";
 import Sidebar from "../Sidebar";
+import RightMenu from "../RightMenu";
 
 function Feed() {
   return (
@@ -18,7 +19,7 @@ function Feed() {
           <QuestionCard />
         </div>
       </div>
-      <div className="right-menu">spacing</div>
+      <RightMenu />
     </div>
   );
 }
