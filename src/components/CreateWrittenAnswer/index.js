@@ -28,7 +28,7 @@ function CreateWrittenAnswer() {
         tags: null,
         text: "",
         times_answered: 0,
-        type: 3,
+        type: 4,
     }
 
     var writtenAnswerData = {
