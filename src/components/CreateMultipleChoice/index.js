@@ -82,9 +82,9 @@ function CreateMultipleChoice({closeOnSubmit}) {
     function createAnswer(i){
         return(
             <React.Fragment>
-                <input type="radio" id={"answer" + i} name = "answer" value={i} onChange={(e)=>{handleRadio(e.target.value)}}/>
+                <input type="radio" id={"answer" + i} name = "answer" value={i} onChange={(e1)=>{handleRadio(e1.target.value)}}/>
                 <span>{i + " "}</span>
-                <input type="text" id={"answer-text + i"} placeholder="Answer Text" onChange={(e)=>{setAnswer(e.target.value, i)}} />
+                <input type="text" id={"answer-text + i"} placeholder="Answer Text" onChange={(e2)=>{setAnswer(e2.target.value, i)}} />
                 <br></br>
             </React.Fragment>
         );
