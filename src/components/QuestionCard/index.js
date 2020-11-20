@@ -63,4 +63,20 @@ function QuestionCard(props) {
     );
 }
 
+function MultipleChoice(props) {
+
+}
+
+function MultipleSelect(props) {
+
+}
+
+function TrueFalse(props) {
+
+}
+
+function WrittenAnswer(props) {
+    
+}
+
 export default QuestionCard;
