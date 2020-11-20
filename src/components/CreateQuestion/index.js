@@ -16,6 +16,7 @@ function QuestionCreate({setTypeSelected}){
 
     const [buttonDisabled, setButtonDisabled] = useState(true);
     const [type, setType] = useState("");
+    
 
     function handleSubmit(){
         console.log("type = " + type);
