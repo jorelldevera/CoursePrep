@@ -4,6 +4,10 @@
     align-items: flex-start;
 }
 
+.left-sidebar {
+    position: relative;
+    width: 297px;
+}
 
 .dashboard-center{
     padding-left: 20px;

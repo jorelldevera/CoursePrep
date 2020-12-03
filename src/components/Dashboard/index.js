@@ -6,7 +6,9 @@ function Dashboard() {
     return(
 
         <div className = 'dashboard-container'>
-            <Sidebar/>
+            <div className="left-sidebar">
+                <Sidebar/>
+            </div>
             <div className = "dashboard-center">
                 <div className = "dashboard-title">
                     <h1>Courses</h1>
