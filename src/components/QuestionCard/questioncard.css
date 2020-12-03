@@ -2,3 +2,7 @@
     width: 991px;
     height: 302px;
 }
+
+form {
+    box-shadow: none;
+}
