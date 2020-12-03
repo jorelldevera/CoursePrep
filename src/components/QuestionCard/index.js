@@ -5,9 +5,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
+import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
+import FormGroup from '@material-ui/core/FormGroup';
 
 function QuestionCard(props) {
     const { avg_score, course_ID, creation_time, department_ID, text, times_answered, type } = props.data;
@@ -119,14 +121,6 @@ const useStyles = makeStyles((theme) => ({
 function MultipleChoice(props) {
     const { avg_score, course_ID, creation_time, department_ID, text, times_answered, type } = props.data;
     
-    // props
-    const [options, setOptions] = useState([]);
-    const [buttonDisabled, setButtonDisabled] = useState(true);
-    const [showResult, setShowResult] = useState(false);
-    const [result, setResult] = useState("Incorrect");
-    const [correctAnswer, setCorrectAnswer] = useState([]);
-    
-    
     // query
     const query = "multiple_choice/" + props.id;
     useEffect( () => {
@@ -137,14 +131,18 @@ function MultipleChoice(props) {
         })
     }, [])
     
+    // options
+    const [options, setOptions] = useState([]);
+    const [correctAnswer, setCorrectAnswer] = useState([]);
+    
     const classes = useStyles();
-    const [value, setValue] = React.useState('');
+    const [selection, setSelection] = React.useState('');
     const [error, setError] = React.useState(false);
     const [helperText, setHelperText] = React.useState('Choose wisely');
     
     const handleRadioChange = (event) => {
         // removes helper text when a radio is selected
-		setValue(event.target.value);
+		setSelection(event.target.value);
 		setHelperText(' ');
 		setError(false);
 	};
@@ -153,10 +151,10 @@ function MultipleChoice(props) {
         // tells them if they got the answer right
 		event.preventDefault();
         
-		if (value === correctAnswer) {
+		if (selection === correctAnswer) {
             setHelperText('You got it!');
 			setError(false);
-		} else if (value === '') {
+		} else if (selection === '') {
             setHelperText('Please select an option.');
 			setError(true);
         } else {
@@ -164,24 +162,9 @@ function MultipleChoice(props) {
 			setError(true);
 		}
     };
-
-    function handleRadio(e){
-        console.log(e)
-        setButtonDisabled(false);
-        if(e === correctAnswer){
-            setResult("Correct");
-        }
-        else{
-            setResult("Incorrect");
-        }
-    }
     
     const renderOptions = Object.entries(options).map(([key, value]) =>{
         return(<>
-            {/* <React.Fragment> 
-                <input type="radio" id={key} name = "question" value={key} onChange={(e)=>{handleRadio(e.target.value)}}/>
-                <label for={key}>{value.toString()}</label><br/>
-            </React.Fragment> */}
             <FormControlLabel value={key} control={<Radio />} label={value} className={classes.formControlLabel} />
         </>);
     })
@@ -196,7 +179,7 @@ function MultipleChoice(props) {
 			<form onSubmit={handleSubmit}>
 				<FormControl component="fieldset" error={error} className={classes.formControl}>
 					{/* <FormLabel component="legend">Pop quiz: Material-UI is...</FormLabel> */}
-					<RadioGroup aria-label="quiz" name="quiz" value={value} onChange={handleRadioChange}>
+					<RadioGroup aria-label="quiz" name="quiz" value={selection} onChange={handleRadioChange}>
                         {renderOptions}
 					</RadioGroup>
 					<FormHelperText>{helperText}</FormHelperText>
@@ -212,8 +195,86 @@ function MultipleChoice(props) {
 
 function MultipleSelect(props) {
     const { avg_score, course_ID, creation_time, department_ID, text, times_answered, type } = props.data;
-    return(<>
 
+    // query
+    const query = "multiple_select/" + props.id;
+    useEffect( () => {
+        firebase.database().ref(query).once('value').then(function(snapshot){
+            setOptions(snapshot.val().possible_answers);
+            setCorrectAnswers(snapshot.val().correct_answers)
+            //console.log(snapshot.val().possible_answers)
+        })
+    }, [])
+
+    // options
+    const [options, setOptions] = useState([]); // key is the letter (corresponds to the correct answer), value is the option text
+    const [correctAnswers, setCorrectAnswers] = useState([]); // value is the key of the correct answer
+
+    const [selections, setSelections] = useState([]);
+    const [error, setError] = useState(false);
+    const [helperText, setHelperText] = useState('Choose wisely');
+
+    const classes = useStyles();
+
+    // tell them if they got the answer right
+    const handleSubmit = (event) => {
+		event.preventDefault();
+        var comparison = selections.sort().every((val, index) => val === correctAnswers.sort()[index]) && selections.length === correctAnswers.length;
+		if (comparison) {
+            setHelperText('You got it!');
+			setError(false);
+		} else if (selections.length === 0) {
+            setHelperText('Please select an option.');
+			setError(true);
+        } else {
+            setHelperText('Sorry, wrong answer!');
+			setError(true);
+		}
+    };
+
+    // removes helper text, updates selection
+    const handleRadioChange = (event) => {
+        if (event.target.checked === true) {
+            setSelections([ ...selections, event.target.value]);
+        } else {
+            setSelections(selections.filter(function(selection)
+                {
+                return selection !== event.target.value
+                })
+            );
+        }
+		setHelperText(' ');
+		setError(false);
+	};
+
+    // render the select options
+    const renderOptions = Object.entries(options).map(([key, value]) =>{
+        return(<>
+            <FormControlLabel value={key} control={<Checkbox />} label={value} className={classes.formControlLabel} />
+        </>);
+    })
+
+    return(<>
+        <div className={classes.questionContainer}>
+            multipleselect
+			<header className={classes.questionHeader}>
+				<h2 className={classes.questionHeaderText}>{text}</h2>
+				
+			</header>
+
+			<form onSubmit={handleSubmit}>
+				<FormControl component="fieldset" error={error} className={classes.formControl}>
+					{/* <FormLabel component="legend">Pop quiz: Material-UI is...</FormLabel> */}
+					<FormGroup aria-label="quiz" name="quiz" value={selections} onChange={handleRadioChange}>
+                        {renderOptions}
+					</FormGroup>
+					<FormHelperText>{helperText}</FormHelperText>
+					<Button type="submit" variant="contained" color="secondary" className={classes.button}>
+						Check Answer
+                </Button>
+				</FormControl>
+			</form>
+		</div>
     </>
     );
 }
