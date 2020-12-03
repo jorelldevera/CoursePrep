@@ -17,8 +17,9 @@ const useStyles = makeStyles((theme) => ({
     questionContainer: {
         background: "#e3e7e9",
         marginBottom: "6px",
-        borderRadius: "10px",
+        borderRadius: "13px",
         paddingLeft: "6px",
+        boxShadow: "inset 0px 4px 4px rgba(0, 0, 0, 0.25)",
     },
     questionHeaderText: {
         color: textcolor,
@@ -81,6 +82,11 @@ function QuestionCard(props) {
                     <WrittenAnswer key={props.key} id={props.id} data={props.data}/>
                 </>
                 );
+            case 5:
+                // fill in the blank
+                return(<>
+                    <WrittenAnswer key={props.key} id={props.id} data={props.data}/>
+                </>);
             default:
                 // error
             break;
@@ -344,6 +350,16 @@ function WrittenAnswer(props) {
 		</div>
     </>
     );
+}
+
+function FillInTheBlank(props) {
+    const { avg_score, course_ID, creation_time, department_ID, text, times_answered, type } = props.data;
+    const classes = useStyles();
+
+    const handleSubmit = (event) => {
+        // tells them if they got the answer right
+		event.preventDefault();
+    };
 }
 
 export default QuestionCard;

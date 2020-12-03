@@ -10,9 +10,10 @@
 }
 
 .center-feed {
-    width: 991px;
+    width: 600px;
     height: 766px;
     margin-right: 100px;
+    margin-left: 100px;
     display: flex;
     flex-direction: column;
 }

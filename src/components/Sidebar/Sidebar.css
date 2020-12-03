@@ -1,6 +1,9 @@
 .sidebar-container {
     width: 297px;
     height: 766px;
-    padding-left: 20px;
-    box-shadow: 5px 5px 5px grey;
+    /* padding-left: 20px; */
+    box-shadow: -5px 5px 5px grey;
+    background: #e3e7e9;
+    margin-top: 46px;
+    border-radius: 10px;
 }
