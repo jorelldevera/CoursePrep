@@ -83,6 +83,7 @@ class SignUpFormBase extends Component {
                         type="text"
                         placeholder="Full Name"
                         />
+                        <br></br>
                     <input
                         name="email"
                         value={email}
@@ -90,6 +91,7 @@ class SignUpFormBase extends Component {
                         type="text"
                         placeholder="Email Address"
                         />
+                        <br></br>
                     <input
                         name="passwordOne"
                         value={passwordOne}
@@ -97,6 +99,7 @@ class SignUpFormBase extends Component {
                         type="password"
                         placeholder="Password"
                         />
+                        <br></br>
                     <input
                         name="passwordTwo"
                         value={passwordTwo}
@@ -104,7 +107,9 @@ class SignUpFormBase extends Component {
                         type="password"
                         placeholder="Confirm Password"
                         />
+                        <br></br>
                 </div>
+                <br></br>
                 <button disabled={isInvalid} type="submit">Sign Up</button>
 
                 {error && <p>{error.message}</p>}

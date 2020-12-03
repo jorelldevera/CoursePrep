@@ -7,6 +7,7 @@ import LoginButton from '../LoginButton';
 import SignUpButton from '../SignUpButton';
 import SignOutButton from '../SignOut';
 import firebase from 'firebase';
+import { Link } from 'react-router-dom';
 
 
 
@@ -39,9 +40,11 @@ const TopBarAuth = () => {
     return(
         <div className = "top-bar-container">
             <div className = "top-bar-left">
-                <h1>
-                    CoursePrep
-                </h1>
+                <Link to = {ROUTES.DASH}>
+                    <h1>
+                        CoursePrep
+                    </h1>
+                </Link>
             </div>
             <div className='top-bar-center'>
 

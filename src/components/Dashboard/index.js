@@ -1,5 +1,6 @@
 import React from 'react';
 import Sidebar from '../Sidebar';
+import RightMenu from '../RightMenu';
 import ClassCard from '../ClassCard';
 import './Dashboard.css';
 function Dashboard() {
@@ -20,9 +21,7 @@ function Dashboard() {
                     </div>
                 </div>
             </div>
-            <div className = "dashboard-right">
-                test right
-            </div>
+            <RightMenu/>
         </div>
     );
 }

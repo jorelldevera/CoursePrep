@@ -56,20 +56,28 @@ class LoginFormBase extends Component {
 
         return (
             <form onSubmit={this.onSubmit}>
-                <input
-                    name="email"
-                    value={email}
-                    onChange={this.onChange}
-                    type="text"
-                    placeholder="Email Address"
-                />
-                <input
-                    name="password"
-                    value={password}
-                    onChange={this.onChange}
-                    type="password"
-                    placeholder="Password"
-                />
+                <div className="form-item">
+                    <h2>Email: </h2>
+                    <input
+                        name="email"
+                        value={email}
+                        onChange={this.onChange}
+                        type="text"
+                        placeholder="Email"
+                    />
+                </div>
+                <br></br>
+                <div className="form-item">
+                    <h2>Password: </h2>
+                    <input
+                        name="password"
+                        value={password}
+                        onChange={this.onChange}
+                        type="password"
+                        placeholder="Password"
+                    />
+                </div>
+                <br></br>
                 <button disabled={isInvalid} type="submit"> Sign In </button>
 
                 {error && <p>{error.message}</p>}

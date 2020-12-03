@@ -1,10 +1,17 @@
 .class-card-container{
-    width: 450px;
-    height: 290px;
+    width: 440px;
+    height: 275px;
     background-color: #764EE9;
-    border-radius: 8px;
+    border-radius: 14px;
     color: white;
     position: relative;
+    transition: all .3s;
+}
+
+.class-card-container:hover{
+    box-shadow: -6px 6px 4px rgba(0, 0, 0, 0.4);
+    transform: translate(6px, -6px);
+    filter: brightness(1.1);
 }
 
 .class-card-container div{
@@ -12,7 +19,7 @@
 }
 
 .class-title{
-    padding-left: 10px;
+    padding-left: 20px;
     position: absolute;
     bottom: 0;
     left: 0;

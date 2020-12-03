@@ -11,3 +11,36 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+input[type = text],input[type = password]{
+  border: none;
+  background-color: #fafafa;
+  box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+  width: 100%;
+  height: 30px;
+  font-size: 24px
+}
+::placeholder{
+  color: #d8d8d8;
+}
+
+.app-container{
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+
+#root{
+  width: 100%;
+  height: auto;
+}
+
+body{
+  background-color: #F7F4EF;
+  overflow: hidden;
+}
+
+h1{
+  color: #343434;
+}

@@ -15,6 +15,7 @@ import Dashboard from '../Dashboard';
 import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
 import { AuthUserContext } from '../Session';
+import './app.css'
 
 function App(props)  {
 
@@ -32,26 +33,24 @@ function App(props)  {
 
     return(
         <Router>
-            <div>
                 <div className="navigation-container">
                     <TopBar />
                 </div>
-                <div className="app-container">
-                <Route exact path={ROUTES.LANDING} render={()=>(
-                    !AuthUserContext._currentValue ? <LandingPage/> : (<Redirect to={ROUTES.DASH}/>)
-                )} />
-                <Route path={ROUTES.DASH} render={()=>(
-                    AuthUserContext._currentValue ? <Dashboard/> : (<Redirect to={ROUTES.LANDING}/>)
-                )}/>
-                <Route path={ROUTES.FEED} render={()=>(
-                    AuthUserContext._currentValue ? <Feed/> : (<Redirect to={ROUTES.LANDING}/>)
-                )}/>
-                <Route path={ROUTES.SIGN_UP} component={SignUpPage}/>
-                <Route path={ROUTES.LOG_IN} component={LoginPage}/>
-                <Route path={ROUTES.QUIZ_TEST} component={QuizPage}/>
-                <Route path={ROUTES.USER_TEST} component={UserPage}/>
+                <div className="app-container" id = "course-prep-content">
+                    <Route exact path={ROUTES.LANDING} render={()=>(
+                        !AuthUserContext._currentValue ? <LandingPage/> : (<Redirect to={ROUTES.DASH}/>)
+                    )} />
+                    <Route path={ROUTES.DASH} render={()=>(
+                        AuthUserContext._currentValue ? <Dashboard/> : (<Redirect to={ROUTES.LANDING}/>)
+                    )}/>
+                    <Route path={ROUTES.FEED} render={()=>(
+                        AuthUserContext._currentValue ? <Feed/> : (<Redirect to={ROUTES.LANDING}/>)
+                    )}/>
+                    <Route path={ROUTES.SIGN_UP} component={SignUpPage}/>
+                    <Route path={ROUTES.LOG_IN} component={LoginPage}/>
+                    <Route path={ROUTES.QUIZ_TEST} component={QuizPage}/>
+                    <Route path={ROUTES.USER_TEST} component={UserPage}/>
                 </div>
-            </div>
         </Router>
     );
     

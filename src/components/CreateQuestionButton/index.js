@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
-import './popup.css';
+import '../../style/popup.css';
 import Button from '@material-ui/core/Button';
 import CreateQuestion from '../CreateQuestion';
 import QuestionCreate from '../CreateQuestion';
@@ -16,8 +16,11 @@ function CreateQuestionButton () {
     const[typeSelected, setTypeSelected] = useState("");
     const[questionType, setQuestionType] = useState({});
     var modal;
+    var modal_content;
+    var appContainer = document.getElementById("course-prep-content");
     useEffect( () => {
         modal = document.getElementById("questionModal");
+        modal_content = document.getElementById("question-content");
     }, )
     if(modal)(
         console.log("modal not null")
@@ -27,16 +30,28 @@ function CreateQuestionButton () {
     }
     window.onclick = function(event) {
         if (event.target == modal) {
-            modal.style.display = "none";
+            //modal.style.display = "none";
+            modal.style.zIndex = -1;
+            modal.style.opacity = 0;
+            modal_content.style.transform = "scale(1.2)";
+            appContainer.style.transform = "scale(1)";
         }
     }
 
     function handleBtnClick() {
-        modal.style.display = "block";
+        //modal.style.display = "block";
+        modal.style.zIndex = 1;
+        modal.style.opacity = 1;
+        modal_content.style.transform = "scale(1)";
+        appContainer.style.transform = "scale(.9)";
     }
 
     function handleSpanClick(){
-        modal.style.display = "none";
+        //modal.style.display = "none";
+        modal.style.zIndex = -1;
+        modal.style.opacity = 0;
+        modal_content.style.transform = "scale(1.2)";
+        appContainer.style.transform = "scale(1)";
         setTypeSelected("")
     }
     function handleSubmit(){
@@ -82,7 +97,7 @@ function CreateQuestionButton () {
             <Button  onClick={()=> {handleBtnClick()}}> Create Question </Button>
             <div id="questionModal" class="modal">
 
-                <div class="modal-content">
+                <div id="question-content" class="modal-content">
                     <span class="close" onClick={()=>{handleSpanClick()}}>&times;</span>
 
                         {typeSelected == "" ?
