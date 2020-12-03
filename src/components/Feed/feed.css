@@ -4,9 +4,9 @@
     align-items: flex-start;
 }
 
-.left-menu {
+.left-sidebar {
+    position: relative;
     width: 297px;
-    height: 766px;
 }
 
 .center-feed {

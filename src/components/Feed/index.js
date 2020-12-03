@@ -13,7 +13,9 @@ function Feed() {
 
     return (
         <div className="feed-container">
-            <Sidebar/>
+            <div className="left-sidebar">
+                <Sidebar/>
+            </div>
             <div className="center-feed">
                 <h1>Course Title</h1>
                 <div className="feed-options">
