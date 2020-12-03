@@ -46,7 +46,7 @@ function QuestionCard(props) {
 
     var qtype = "";
     
-    // first figure out which question to create and then pass the info to that question
+    // read type to create a question
     function buildQuestionType(type) {
         switch (type) {
             case 0:
@@ -260,8 +260,71 @@ function MultipleSelect(props) {
 
 function TrueFalse(props) {
     const { avg_score, course_ID, creation_time, department_ID, text, times_answered, type } = props.data;
+    
+    // query
+    const query = "truefalse/" + props.id;
+    useEffect( () => {
+        firebase.database().ref(query).once('value').then(function(snapshot){
+            if (snapshot.val() === null)
+            {
+                console.log(query);
+            }
+            setCorrectAnswer(snapshot.val().correct_answer);
+        })
+    }, [])
+    
+    // options
+    const [correctAnswer, setCorrectAnswer] = useState([]);
+    
+    const classes = useStyles();
+    const [selection, setSelection] = React.useState('');
+    const [error, setError] = React.useState(false);
+    const [helperText, setHelperText] = React.useState('Choose wisely');
+    
+    const handleRadioChange = (event) => {
+        // removes helper text when a radio is selected
+		setSelection(event.target.value);
+		setHelperText(' ');
+		setError(false);
+	};
+    
+	const handleSubmit = (event) => {
+        // tells them if they got the answer right
+		event.preventDefault();
+        
+		if (selection === correctAnswer) {
+            setHelperText('You got it!');
+			setError(false);
+		} else if (selection === '') {
+            setHelperText('Please select an option.');
+			setError(true);
+        } else {
+            setHelperText('Sorry, wrong answer!');
+			setError(true);
+		}
+    };
+    
     return(<>
+        <div className={classes.questionContainer}>
+			<header className={classes.questionHeader}>
+				<h2 className={classes.questionHeaderText}>{text}</h2>
+				
+			</header>
 
+			<form onSubmit={handleSubmit}>
+				<FormControl component="fieldset" error={error} className={classes.formControl}>
+					{/* <FormLabel component="legend">Pop quiz: Material-UI is...</FormLabel> */}
+					<RadioGroup aria-label="quiz" name="quiz" value={selection} onChange={handleRadioChange}>
+                        <FormControlLabel value="true" control={<Radio />} label="True" className={classes.formControlLabel} />
+                        <FormControlLabel value="false" control={<Radio />} label="False" className={classes.formControlLabel} />
+					</RadioGroup>
+					<FormHelperText>{helperText}</FormHelperText>
+					<Button type="submit" variant="contained" color="secondary" className={classes.button}>
+						Check Answer
+                </Button>
+				</FormControl>
+			</form>
+		</div>
     </>
     );
 }
