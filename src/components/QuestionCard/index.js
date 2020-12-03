@@ -256,10 +256,8 @@ function MultipleSelect(props) {
 
     return(<>
         <div className={classes.questionContainer}>
-            multipleselect
 			<header className={classes.questionHeader}>
 				<h2 className={classes.questionHeaderText}>{text}</h2>
-				
 			</header>
 
 			<form onSubmit={handleSubmit}>
