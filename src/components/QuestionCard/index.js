@@ -11,112 +11,93 @@ import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormGroup from '@material-ui/core/FormGroup';
 
+const textcolor = "#0A0B09";
+const useStyles = makeStyles((theme) => ({
+    questionContainer: {
+        background: "#e3e7e9",
+        marginBottom: "6px",
+        borderRadius: "10px",
+        paddingLeft: "6px",
+    },
+    questionHeaderText: {
+        color: textcolor,
+        // marginTop: "0px",
+    },
+    questionHeader: {
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+    },
+    formControl: {
+        marginBottom: "24px",
+        width: "80%",
+    },
+    formControlLabel: {
+        color: textcolor,
+    },
+    button: {
+        margin: theme.spacing(1, 1, 0, 0),
+    },
+}));
+
 function QuestionCard(props) {
     const { avg_score, course_ID, creation_time, department_ID, text, times_answered, type } = props.data;
 
+    var qtype = "";
     
     // first figure out which question to create and then pass the info to that question
     function buildQuestionType(type) {
         switch (type) {
             case 0:
                 // multiple choice
+                qtype = "multipleChoice";
                 return(<>
                     <MultipleChoice key={props.key} id={props.id} data={props.data}/>
                 </>
                 );
-                break;
-                case 1:
+            case 1:
                 // multiple select
+                qtype = "multiple select";
                 return(<>
                     <MultipleSelect key={props.key} id={props.id} data={props.data}/>
                 </>
                 );
-                break;
-                case 2:
-                    // short answer
-                    return(<>
+            case 2:
+                // short answer
+                qtype = "short answer";
+                return(<>
                     <WrittenAnswer key={props.key} id={props.id} data={props.data}/>
                 </>
                 );
-                break;
-                case 3:
-                    // true false
-                    return(<>
+            case 3:
+                // true false
+                qtype = "true false";
+                return(<>
                     <TrueFalse key={props.key} id={props.id} data={props.data}/>
                 </>
                 );
-                break;
-                case 4:
-                    // written answer
-                    return(<>
+            case 4:
+                // written answer
+                qtype = "written answer";
+                return(<>
                     <WrittenAnswer key={props.key} id={props.id} data={props.data}/>
                 </>
                 );
-                break;
-                default:
-                    // error
-                    break;
+            default:
+                // error
+            break;
         }
     }
-            
-            // then query the database for more information from inside the question
-            // then set up the question
-            // return the question to the question card
-            // return the completed question card
-
-    
-    
-    
-    // function handleSubmit() {
-    //     setShowResult(true);
-    // }
     
     return (
         <div className="question-card-container">
-        {buildQuestionType(type)}
-        {console.log(props)}
-            {text}
-            {/* <form> */}
-                {/* {renderOptions} */}
-                {/* <Button id = "submit button" variant="contained" disabled = {buttonDisabled} onClick={()=> {handleSubmit()}}>Submit</Button>
-                {showResult ?
-                    <h1>{result}</h1> :
-                    null
-                } */}
-            {/* </form> */}
+            {buildQuestionType(type)}
+            {text + ". type=" + qtype}
         </div>
     );
 }
 
-const textcolor = "#0A0B09";
-const useStyles = makeStyles((theme) => ({
-	questionContainer: {
-        background: "#e3e7e9",
-		marginBottom: "6px",
-		borderRadius: "10px",
-		paddingLeft: "6px",
-	},
-	questionHeaderText: {
-        color: textcolor,
-		// marginTop: "0px",
-	},
-	questionHeader: {
-        display: "flex",
-		flexDirection: "row",
-		justifyContent: "space-between",
-		alignItems: "center",
-	},
-	formControl: {
-        marginBottom: "24px",
-		width: "80%",
-	},
-	formControlLabel: {
-        color: textcolor,
-	},
-	button: {
-        margin: theme.spacing(1, 1, 0, 0),
-	},
-}));
 
 function MultipleChoice(props) {
     const { avg_score, course_ID, creation_time, department_ID, text, times_answered, type } = props.data;
