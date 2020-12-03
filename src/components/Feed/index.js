@@ -17,12 +17,10 @@ function Feed() {
             <div className="center-feed">
                 <h1>Course Title</h1>
                 <div className="feed-options">
-                    sort menu and tag selector goes here. tag creation restricted to moderator? how many tags to list?
+                    sort menu and tag selector goes here
                 </div>
                 <div className="question-stream">
-                    question stream
                     {snapshots && snapshots.map(question => <QuestionCard key={question.key} id={question.key} data={question.val()}/>)}
-                    {/* <QuestionCard/> */}
                 </div>
             </div>
             <div className="right-menu">

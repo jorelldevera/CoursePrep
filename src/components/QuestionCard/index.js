@@ -10,6 +10,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormGroup from '@material-ui/core/FormGroup';
+import TextField from '@material-ui/core/TextField';
 
 const textcolor = "#0A0B09";
 const useStyles = makeStyles((theme) => ({
@@ -21,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
     },
     questionHeaderText: {
         color: textcolor,
-        // marginTop: "0px",
     },
     questionHeader: {
         display: "flex",
@@ -36,6 +36,9 @@ const useStyles = makeStyles((theme) => ({
     formControlLabel: {
         color: textcolor,
     },
+    formGroup: {
+        boxShadow: "none",
+    },
     button: {
         margin: theme.spacing(1, 1, 0, 0),
     },
@@ -43,43 +46,37 @@ const useStyles = makeStyles((theme) => ({
 
 function QuestionCard(props) {
     const { avg_score, course_ID, creation_time, department_ID, text, times_answered, type } = props.data;
+    const classes = useStyles();
 
-    var qtype = "";
-    
     // read type to create a question
     function buildQuestionType(type) {
         switch (type) {
             case 0:
                 // multiple choice
-                qtype = "multipleChoice";
                 return(<>
                     <MultipleChoice key={props.key} id={props.id} data={props.data}/>
                 </>
                 );
             case 1:
                 // multiple select
-                qtype = "multiple select";
                 return(<>
                     <MultipleSelect key={props.key} id={props.id} data={props.data}/>
                 </>
                 );
             case 2:
                 // short answer
-                qtype = "short answer";
                 return(<>
                     <WrittenAnswer key={props.key} id={props.id} data={props.data}/>
                 </>
                 );
             case 3:
                 // true false
-                qtype = "true false";
                 return(<>
                     <TrueFalse key={props.key} id={props.id} data={props.data}/>
                 </>
                 );
             case 4:
                 // written answer
-                qtype = "written answer";
                 return(<>
                     <WrittenAnswer key={props.key} id={props.id} data={props.data}/>
                 </>
@@ -91,9 +88,11 @@ function QuestionCard(props) {
     }
     
     return (
-        <div className="question-card-container">
+        <div className={classes.questionContainer}>
+            <header className={classes.questionHeader}>
+				<h2 className={classes.questionHeaderText}>{text}</h2>
+			</header>
             {buildQuestionType(type)}
-            {text + ". type=" + qtype}
         </div>
     );
 }
@@ -151,12 +150,7 @@ function MultipleChoice(props) {
     })
     
     return(<>
-        <div className={classes.questionContainer}>
-			<header className={classes.questionHeader}>
-				<h2 className={classes.questionHeaderText}>{text}</h2>
-				
-			</header>
-
+        <div>
 			<form onSubmit={handleSubmit}>
 				<FormControl component="fieldset" error={error} className={classes.formControl}>
 					{/* <FormLabel component="legend">Pop quiz: Material-UI is...</FormLabel> */}
@@ -236,15 +230,11 @@ function MultipleSelect(props) {
     })
 
     return(<>
-        <div className={classes.questionContainer}>
-			<header className={classes.questionHeader}>
-				<h2 className={classes.questionHeaderText}>{text}</h2>
-			</header>
-
+        <div>
 			<form onSubmit={handleSubmit}>
 				<FormControl component="fieldset" error={error} className={classes.formControl}>
 					{/* <FormLabel component="legend">Pop quiz: Material-UI is...</FormLabel> */}
-					<FormGroup aria-label="quiz" name="quiz" value={selections} onChange={handleRadioChange}>
+					<FormGroup aria-label="quiz" name="quiz" value={selections} onChange={handleRadioChange} className={classes.formGroup}>
                         {renderOptions}
 					</FormGroup>
 					<FormHelperText>{helperText}</FormHelperText>
@@ -305,12 +295,7 @@ function TrueFalse(props) {
     };
     
     return(<>
-        <div className={classes.questionContainer}>
-			<header className={classes.questionHeader}>
-				<h2 className={classes.questionHeaderText}>{text}</h2>
-				
-			</header>
-
+        <div>
 			<form onSubmit={handleSubmit}>
 				<FormControl component="fieldset" error={error} className={classes.formControl}>
 					{/* <FormLabel component="legend">Pop quiz: Material-UI is...</FormLabel> */}
@@ -319,9 +304,10 @@ function TrueFalse(props) {
                         <FormControlLabel value="false" control={<Radio />} label="False" className={classes.formControlLabel} />
 					</RadioGroup>
 					<FormHelperText>{helperText}</FormHelperText>
+
 					<Button type="submit" variant="contained" color="secondary" className={classes.button}>
 						Check Answer
-                </Button>
+                    </Button>
 				</FormControl>
 			</form>
 		</div>
@@ -331,8 +317,31 @@ function TrueFalse(props) {
 
 function WrittenAnswer(props) {
     const { avg_score, course_ID, creation_time, department_ID, text, times_answered, type } = props.data;
-    return(<>
+    const classes = useStyles();
 
+    const handleSubmit = (event) => {
+        // tells them if they got the answer right
+		event.preventDefault();
+    };
+
+    return(<>
+        <div>
+			<form onSubmit={handleSubmit}>
+				<FormControl component="fieldset" className={classes.formControl}>
+                    <TextField
+                    id="standard-multiline-static"
+                    label="Multiline"
+                    multiline
+                    rows={4}
+                    defaultValue="Default Value"
+                    />
+
+					<Button type="submit" variant="contained" color="secondary" className={classes.button}>
+						Check Answer
+                    </Button>
+				</FormControl>
+			</form>
+		</div>
     </>
     );
 }
