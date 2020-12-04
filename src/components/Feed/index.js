@@ -14,7 +14,7 @@ function Feed() {
     return (
         <div className="feed-container">
             <Sidebar/>
-            <div className="center-feed">
+            <div id= "middle-feed" className="center-feed">
                 <h1>Course Title</h1>
                 <div className="feed-options">
                     sort menu and tag selector goes here
@@ -23,9 +23,7 @@ function Feed() {
                     {snapshots && snapshots.map(question => <QuestionCard key={question.key} id={question.key} data={question.val()}/>)}
                 </div>
             </div>
-            <div className="right-menu">
-                <CreateQuestionButton/>
-            </div>
+            <CreateQuestionButton/>
         </div>
     );
 }

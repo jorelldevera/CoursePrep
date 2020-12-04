@@ -17,8 +17,12 @@ function CreateQuestionButton () {
     const[questionType, setQuestionType] = useState({});
     var modal;
     var modal_content;
+    var middleFeed;
+    var sideBar;
     var appContainer = document.getElementById("course-prep-content");
     useEffect( () => {
+        sideBar = document.getElementById("sideBar");
+        middleFeed = document.getElementById("middle-feed");
         modal = document.getElementById("questionModal");
         modal_content = document.getElementById("question-content");
     }, )
@@ -35,6 +39,8 @@ function CreateQuestionButton () {
             modal.style.opacity = 0;
             modal_content.style.transform = "scale(1.2)";
             appContainer.style.transform = "scale(1)";
+            middleFeed.style.transform = "scale(1)";
+            sideBar.style.transform = "scale(1)";
         }
     }
 
@@ -43,7 +49,10 @@ function CreateQuestionButton () {
         modal.style.zIndex = 1;
         modal.style.opacity = 1;
         modal_content.style.transform = "scale(1)";
-        appContainer.style.transform = "scale(.9)";
+        //appContainer.style.transform = "scale(.9)";
+        modal.style.transform = "scale(1)";
+        middleFeed.style.transform = "scale(.9)";
+        sideBar.style.transform = "scale(.9)";
     }
 
     function handleSpanClick(){
@@ -52,6 +61,8 @@ function CreateQuestionButton () {
         modal.style.opacity = 0;
         modal_content.style.transform = "scale(1.2)";
         appContainer.style.transform = "scale(1)";
+        middleFeed.style.transform = "scale(1)";
+        sideBar.style.transform = "scale(1)";
         setTypeSelected("")
     }
     function handleSubmit(){

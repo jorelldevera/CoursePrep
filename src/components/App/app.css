@@ -1,8 +1,6 @@
 .app-container {
     /* background-color: #FCFBF9; */
     transition: .2s ease;
-    height: fit-content;
-    background-color: aqua;
     width: 100%;
-    height: auto;
+    height: 100vh;
 }

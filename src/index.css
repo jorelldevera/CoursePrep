@@ -25,12 +25,6 @@ input[type = text],input[type = password]{
   color: #d8d8d8;
 }
 
-.app-container{
-  width: 100%;
-  height: auto;
-  overflow: hidden;
-}
-
 #root{
   width: 100%;
   height: auto;
@@ -44,3 +38,5 @@ body{
 h1{
   color: #343434;
 }
+
+

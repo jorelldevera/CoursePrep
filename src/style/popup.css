@@ -15,6 +15,10 @@
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     transition: opacity .2s ease;
+    -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 

@@ -11,12 +11,20 @@
 
 .center-feed {
     width: 600px;
-    height: 766px;
+    height: 200vh;
     margin-right: 100px;
     margin-left: 100px;
     display: flex;
     flex-direction: column;
+    transition: all .2s ease;
+    overflow: scroll;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
+
+.center-feed::-webkit-scrollbar {
+    display: none;
+  }
 
 .center-feed h1 {
     text-align: center;
