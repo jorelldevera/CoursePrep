@@ -1,0 +1,7 @@
+.vert-buttons Button {
+    display: block;
+    width:100%;
+    height: 100px;
+    font-size: large;
+    margin: auto;
+}
