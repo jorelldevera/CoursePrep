@@ -25,10 +25,10 @@ function CreateMultipleChoice({closeOnSubmit}) {
         type: 0,
     }
 
-    var multipleChoiceData = {
+    var questionData = {
         author_ID: 1,
         correct_answer: "",
-        hints: null,
+        hints: [],
         text: "",
         possible_answers: {
             A: "",
@@ -42,7 +42,12 @@ function CreateMultipleChoice({closeOnSubmit}) {
     const [buttonDisabled, setButtonDisabled] = useState(true);
     const [correct, setCorrect] = useState("");
     const [text, setText] = useState("");
-    const [answers, setAnswers] = useState(multipleChoiceData.possible_answers);
+    const [answers, setAnswers] = useState(questionData.possible_answers);
+    const [hint1, setHint1] = useState("")
+    const [hint2, setHint2] = useState("")
+    const [hint3, setHint3] = useState("")
+    const [hint4, setHint4] = useState("")
+    const [hint5, setHint5] = useState("")
     
 
     function handleRadio(e){
@@ -51,15 +56,15 @@ function CreateMultipleChoice({closeOnSubmit}) {
     }
     function setAnswer(e,i){
 
-        multipleChoiceData.possible_answers = answers;
-        for(const property in multipleChoiceData.possible_answers){
+        questionData.possible_answers = answers;
+        for(const property in questionData.possible_answers){
             //console.log('${property}: ${object[property]}');
             //console.log({property})
             if(i === {property}.property){
-                multipleChoiceData.possible_answers[i] = e;
-                setAnswers(multipleChoiceData.possible_answers);
+                questionData.possible_answers[i] = e;
+                setAnswers(questionData.possible_answers);
             }
-            //console.log(multipleChoiceData.possible_answers[{property}]);
+            //console.log(questionData.possible_answers[{property}]);
         }
        // console.log(answers);
     }
@@ -67,19 +72,24 @@ function CreateMultipleChoice({closeOnSubmit}) {
     function handleSubmit(){
         console.log("testing pushing...")
         console.log(text);
-        multipleChoiceData.correct_answer = correct;
-        multipleChoiceData.text = text;
-        multipleChoiceData.author_ID = firebase.auth().W;
-        multipleChoiceData.possible_answers = answers;
+        questionData.correct_answer = correct;
+        questionData.text = text;
+        questionData.author_ID = firebase.auth().W;
+        questionData.possible_answers = answers;
         questionMetaData.text = text;
         questionMetaData.creation_time = Date.now();
         console.log(answers);
+        if (hint1 != "") {questionData.hints.push(hint1)}
+        if (hint2 != "") {questionData.hints.push(hint2)}
+        if (hint3 != "") {questionData.hints.push(hint3)}
+        if (hint4 != "") {questionData.hints.push(hint4)}
+        if (hint5 != "") {questionData.hints.push(hint5)}
         
         var key = firebase.database().ref('question_metadata/').push().key;
         console.log(key);
         var updates = {};
         updates["question_metadata/" + key] = questionMetaData;
-        updates["multiple_choice/" + key] = multipleChoiceData;
+        updates["multiple_choice/" + key] = questionData;
         firebase.database().ref().update(updates);
         closeOnSubmit();
     }
@@ -87,9 +97,12 @@ function CreateMultipleChoice({closeOnSubmit}) {
     function createAnswer(i){
         return(
             <React.Fragment>
-                <input type="radio" id={"answer" + i} name = "answer" value={i} onChange={(e1)=>{handleRadio(e1.target.value)}}/>
-                <span>{i + " "}</span>
-                <input type="text" id={"answer-text" + i} placeholder="Answer Text" onChange={(e2)=>{setAnswer(e2.target.value, i)}} />
+                <div className="selectanswertext">
+                    <label for={"answer-text" + i}>
+                        <input type="radio" id={"answer" + i} name = "answer" value={i} onChange={(e1)=>{handleRadio(e1.target.value)}}/>
+                    </label>
+                    <input type="text" id={"answer-text" + i} placeholder={"Answer " + i} onChange={(e2)=>{setAnswer(e2.target.value, i)}} />
+                </div>
                 <br></br>
             </React.Fragment>
         );
@@ -99,7 +112,9 @@ function CreateMultipleChoice({closeOnSubmit}) {
         <React.Fragment>
             <h1>Multiple Choice</h1>
             <h2>Enter Question:</h2>
-            <input type="text" placeholder="Question Text" onChange={(e)=>{setText(e.target.value)}} />
+            <div className="questiontext">
+                <input type="text" placeholder="Question Text" onChange={(e)=>{setText(e.target.value)}} />
+            </div>
             <br></br>
             <h2>Select Correct Answer:</h2>
             {createAnswer("A")}
@@ -112,6 +127,25 @@ function CreateMultipleChoice({closeOnSubmit}) {
 
             <input type="radio" id="false" name = "answer" value="false" onChange={(e)=>{handleRadio(e.target.value)}}/>
             <label for="false">False</label><br/> */}
+
+            <h2>Enter hints (optional):</h2>
+
+            <div className="hinttext">
+                <label for="hint1">1: </label>
+                <input type="text" id="hint1" placeholder="" onChange={(e)=>{setHint1(e.target.value)}}/><br/>
+
+                <label for="hint2">2: </label>
+                <input type="text" id="hint2" placeholder="" onChange={(e)=>{setHint2(e.target.value)}}/><br/>
+
+                <label for="hint3">3: </label>
+                <input type="text" id="hint3" placeholder="" onChange={(e)=>{setHint3(e.target.value)}}/><br/>
+
+                <label for="hint4">4: </label>
+                <input type="text" id="hint4" placeholder="" onChange={(e)=>{setHint4(e.target.value)}}/><br/>
+
+                <label for="hint5">5: </label>
+                <input type="text" id="hint5" placeholder="" onChange={(e)=>{setHint5(e.target.value)}}/><br/>
+            </div>
 
             <Button id = "submit button" variant="contained" disabled = {buttonDisabled} onClick={()=> {handleSubmit()}}>Submit</Button>
         </React.Fragment>

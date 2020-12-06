@@ -75,7 +75,9 @@ function CreateTrueFalse({closeOnSubmit}) {
         <React.Fragment>
             <h1>True False</h1>
             <h2>Enter Question:</h2>
-            <input type="text" placeholder="Question Text" onChange={(e)=>{setText(e.target.value)}} />
+            <div className="questiontext">
+                <input type="text" placeholder="Question Text" onChange={(e)=>{setText(e.target.value)}} />
+            </div>
             <br></br>
             <h2>Select Correct Answer:</h2>
 
@@ -86,22 +88,22 @@ function CreateTrueFalse({closeOnSubmit}) {
             <label for="false">False</label><br/>
 
             <h2>Enter hints (optional):</h2>
+            <div className="hinttext">
+                <label for="hint1">1: </label>
+                <input type="text" id="hint1" placeholder="" onChange={(e)=>{setHint1(e.target.value)}}/><br/>
 
-            <label for="hint1">1: </label>
-            <input type="text" id="hint1" placeholder="" onChange={(e)=>{setHint1(e.target.value)}}/><br/>
+                <label for="hint2">2: </label>
+                <input type="text" id="hint2" placeholder="" onChange={(e)=>{setHint2(e.target.value)}}/><br/>
 
-            <label for="hint2">2: </label>
-            <input type="text" id="hint2" placeholder="" onChange={(e)=>{setHint2(e.target.value)}}/><br/>
+                <label for="hint3">3: </label>
+                <input type="text" id="hint3" placeholder="" onChange={(e)=>{setHint3(e.target.value)}}/><br/>
 
-            <label for="hint3">3: </label>
-            <input type="text" id="hint3" placeholder="" onChange={(e)=>{setHint3(e.target.value)}}/><br/>
+                <label for="hint4">4: </label>
+                <input type="text" id="hint4" placeholder="" onChange={(e)=>{setHint4(e.target.value)}}/><br/>
 
-            <label for="hint4">4: </label>
-            <input type="text" id="hint4" placeholder="" onChange={(e)=>{setHint4(e.target.value)}}/><br/>
-
-            <label for="hint5">5: </label>
-            <input type="text" id="hint5" placeholder="" onChange={(e)=>{setHint5(e.target.value)}}/><br/>
-
+                <label for="hint5">5: </label>
+                <input type="text" id="hint5" placeholder="" onChange={(e)=>{setHint5(e.target.value)}}/><br/>
+            </div>
             <Button id = "submit button" variant="contained" disabled = {buttonDisabled} onClick={()=> {handleSubmit()}}>Submit</Button>
         </React.Fragment>
 
