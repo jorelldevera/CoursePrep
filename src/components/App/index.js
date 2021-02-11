@@ -16,6 +16,7 @@ import * as ROUTES from '../../constants/routes';
 import { withAuthentication } from '../Session';
 import { AuthUserContext } from '../Session';
 import './app.css'
+import UserHomepage from '../UserHomepage';
 
 function App(props)  {
 
@@ -51,6 +52,7 @@ function App(props)  {
                         <Route path={ROUTES.LOG_IN} component={LoginPage}/>
                         <Route path={ROUTES.QUIZ_TEST} component={QuizPage}/>
                         <Route path={ROUTES.USER_TEST} component={UserPage}/>
+                        <Route path={ROUTES.USER_PAGE} component={UserHomepage}/>
                     </div>
             </Router>
         </div>
