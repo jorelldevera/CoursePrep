@@ -17,7 +17,7 @@ function Feed() {
             <div id= "middle-feed" className="center-feed">
                 <h1>Course Title</h1>
                 <div className="feed-options">
-                    sort menu and tag selector goes here
+                    sort menu and tag selector goes here. test
                 </div>
                 <div className="question-stream">
                     {snapshots && snapshots.reverse().map(question => <QuestionCard key={question.key} id={question.key} data={question.val()}/>)}

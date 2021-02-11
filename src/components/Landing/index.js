@@ -18,7 +18,7 @@ const LandingPage = () => (
 const LandingPageNonAuth = () => {
     return (
         <div>
-            <h1 className='landing-header'>Landing Page</h1>
+            <h1 className='landing-header'>Course Prep</h1>
         </div>
     );
 }
