@@ -9,6 +9,7 @@ import CreateFillInBlank from '../CreateFillInBlank';
 import CreateMultipleChoice from '../CreateMultipleChoice';
 import CreateMultipleSelect from '../CreateMultipleSelect';
 import CreateWrittenAnswer from '../CreateWrittenAnswer';
+import './CreateQuestionButton.css'
 
 
 function CreateQuestionButton () {

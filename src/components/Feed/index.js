@@ -20,7 +20,7 @@ function Feed() {
                     sort menu and tag selector goes here
                 </div>
                 <div className="question-stream">
-                    {snapshots && snapshots.map(question => <QuestionCard key={question.key} id={question.key} data={question.val()}/>)}
+                    {snapshots && snapshots.reverse().map(question => <QuestionCard key={question.key} id={question.key} data={question.val()}/>)}
                 </div>
             </div>
             <CreateQuestionButton/>
