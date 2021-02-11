@@ -65,11 +65,27 @@ function QuestionCard(props) {
     const { avg_score, course_ID, creation_time, department_ID, text, times_answered, type } = props.data;
     const classes = useStyles();
 
+    var uid = firebase.auth().currentUser.uid;
+
     // for header dropdown
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
+    const [isFavorite, setIsFavorite] = React.useState(false);
 
-    const handleToggle = () => {
+    var query = 'questions_saved/' + uid + "/";
+    const starredRef = firebase.database().ref(query); 
+    useEffect( () => {
+        starredRef.once('value').then(function(snapshot){
+            console.log(snapshot.val());
+            console.log("ding");
+        })
+
+        // for each in snapshot.val()
+        // if the value == props.id
+        // setIsFavorite to true
+    }, [])
+
+    const handleMenuToggle = () => {
 		// opens the dropdown
 		setOpen((prevOpen) => !prevOpen);
 	};
@@ -90,6 +106,26 @@ function QuestionCard(props) {
 			setOpen(false);
 		}
 	}
+
+    const handeStarBorder = () => {
+        // create a query
+        var query = 'questions_saved/' + uid + "/";
+
+        // add to the database
+        starredRef.set({
+            question_id: props.id
+        });
+
+        // switch from border to filled
+        setIsFavorite(true);
+    }
+
+    const handleStarFilled = () => {
+        // remove from the database
+
+        // switch from filled to border
+        setIsFavorite(false);
+    }
 
     // read type to create a question
     function buildQuestionType(type) {
@@ -143,14 +179,23 @@ function QuestionCard(props) {
                 </div>
 
                 <div className={classes.questionHeaderRight}>
-                    <Button>
-                        <StarBorderIcon />
-                    </Button>
+                    {isFavorite === true ? (
+                        <Button
+                            onClick={handleStarFilled}>
+                            <StarIcon />
+                        </Button>
+                    ) : isFavorite === false ? (
+                        <Button
+                            onClick={handeStarBorder}>
+                            <StarBorderIcon />
+                        </Button>
+                    ) : null}
+
                     <Button
                         ref={anchorRef}
                         aria-controls={open ? 'menu-list-grow' : undefined}
                         aria-haspopup="true"
-                        onClick={handleToggle}
+                        onClick={handleMenuToggle}
                     >
                         <ArrowDropDownIcon />
                     </Button>
@@ -164,6 +209,7 @@ function QuestionCard(props) {
                                     <ClickAwayListener onClickAway={handleClose}>
                                         <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                                             <MenuItem onClick={handleClose}>Quiz 1</MenuItem>
+                                            <MenuItem onClick={handleClose}>{uid}</MenuItem>
                                             <MenuItem onClick={handleClose}>Quiz 2</MenuItem>
                                             <MenuItem onClick={handleClose}>New Quiz</MenuItem>
                                         </MenuList>
