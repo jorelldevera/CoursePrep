@@ -41,6 +41,11 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: "space-between",
         alignItems: "center",
     },
+    questionHeaderRight: {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center,"
+    },
     formControl: {
         marginBottom: "24px",
         width: "80%",
@@ -133,36 +138,41 @@ function QuestionCard(props) {
     return (
         <div className={classes.questionContainer}>
             <header className={classes.questionHeader}>
-				<h2 className={classes.questionHeaderText}>{text}</h2>
-                <Button>
-                    <StarBorderIcon />
-                </Button>
-                <Button
-					ref={anchorRef}
-					aria-controls={open ? 'menu-list-grow' : undefined}
-					aria-haspopup="true"
-					onClick={handleToggle}
-				>
-                    <ArrowDropDownIcon />
-                </Button>
-				<Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
-					{({ TransitionProps, placement }) => (
-						<Grow
-							{...TransitionProps}
-							style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-						>
-							<Paper>
-								<ClickAwayListener onClickAway={handleClose}>
-									<MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-										<MenuItem onClick={handleClose}>Quiz 1</MenuItem>
-										<MenuItem onClick={handleClose}>Quiz 2</MenuItem>
-                                        <MenuItem onClick={handleClose}>New Quiz</MenuItem>
-									</MenuList>
-								</ClickAwayListener>
-							</Paper>
-						</Grow>
-					)}
-				</Popper>
+                <div className={classes.questionHeaderLeft}>
+				    <h2 className={classes.questionHeaderText}>{text}</h2>
+                </div>
+
+                <div className={classes.questionHeaderRight}>
+                    <Button>
+                        <StarBorderIcon />
+                    </Button>
+                    <Button
+                        ref={anchorRef}
+                        aria-controls={open ? 'menu-list-grow' : undefined}
+                        aria-haspopup="true"
+                        onClick={handleToggle}
+                    >
+                        <ArrowDropDownIcon />
+                    </Button>
+                    <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
+                        {({ TransitionProps, placement }) => (
+                            <Grow
+                                {...TransitionProps}
+                                style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+                            >
+                                <Paper>
+                                    <ClickAwayListener onClickAway={handleClose}>
+                                        <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+                                            <MenuItem onClick={handleClose}>Quiz 1</MenuItem>
+                                            <MenuItem onClick={handleClose}>Quiz 2</MenuItem>
+                                            <MenuItem onClick={handleClose}>New Quiz</MenuItem>
+                                        </MenuList>
+                                    </ClickAwayListener>
+                                </Paper>
+                            </Grow>
+                        )}
+                    </Popper>
+                </div>
 			</header>
             {buildQuestionType(type)}
         </div>
