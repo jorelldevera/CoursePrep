@@ -12,6 +12,17 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormGroup from '@material-ui/core/FormGroup';
 import TextField from '@material-ui/core/TextField';
 
+// Question header imports
+import StarIcon from '@material-ui/icons/Star';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Grow from '@material-ui/core/Grow';
+import Paper from '@material-ui/core/Paper';
+import Popper from '@material-ui/core/Popper';
+import MenuItem from '@material-ui/core/MenuItem';
+import MenuList from '@material-ui/core/MenuList';
+
 const textcolor = "#0A0B09";
 const useStyles = makeStyles((theme) => ({
     questionContainer: {
@@ -48,6 +59,32 @@ const useStyles = makeStyles((theme) => ({
 function QuestionCard(props) {
     const { avg_score, course_ID, creation_time, department_ID, text, times_answered, type } = props.data;
     const classes = useStyles();
+
+    // for header dropdown
+    const [open, setOpen] = React.useState(false);
+    const anchorRef = React.useRef(null);
+
+    const handleToggle = () => {
+		// opens the dropdown
+		setOpen((prevOpen) => !prevOpen);
+	};
+
+	const handleClose = (event) => {
+		// closes the dropdown
+		if (anchorRef.current && anchorRef.current.contains(event.target)) {
+			return;
+		}
+
+		setOpen(false);
+	};
+
+    function handleListKeyDown(event) {
+		// not sure what this does
+		if (event.key === 'Tab') {
+			event.preventDefault();
+			setOpen(false);
+		}
+	}
 
     // read type to create a question
     function buildQuestionType(type) {
@@ -97,6 +134,35 @@ function QuestionCard(props) {
         <div className={classes.questionContainer}>
             <header className={classes.questionHeader}>
 				<h2 className={classes.questionHeaderText}>{text}</h2>
+                <Button>
+                    <StarBorderIcon />
+                </Button>
+                <Button
+					ref={anchorRef}
+					aria-controls={open ? 'menu-list-grow' : undefined}
+					aria-haspopup="true"
+					onClick={handleToggle}
+				>
+                    <ArrowDropDownIcon />
+                </Button>
+				<Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
+					{({ TransitionProps, placement }) => (
+						<Grow
+							{...TransitionProps}
+							style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+						>
+							<Paper>
+								<ClickAwayListener onClickAway={handleClose}>
+									<MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+										<MenuItem onClick={handleClose}>Quiz 1</MenuItem>
+										<MenuItem onClick={handleClose}>Quiz 2</MenuItem>
+                                        <MenuItem onClick={handleClose}>New Quiz</MenuItem>
+									</MenuList>
+								</ClickAwayListener>
+							</Paper>
+						</Grow>
+					)}
+				</Popper>
 			</header>
             {buildQuestionType(type)}
         </div>
