@@ -21,3 +21,15 @@
     justify-content: center;
     color: white;
 }
+
+.userpage-link{
+    font-size: 48px;
+    padding-right: 50%;
+    vertical-align: center;
+}
+
+.signout-button{
+    align-self: center;
+    padding-right: 50%;
+    block-size: auto;
+}

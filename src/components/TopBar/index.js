@@ -50,10 +50,14 @@ const TopBarAuth = () => {
 
             </div>
             <div className ="top-bar-right">
-                <Link to = {ROUTES.USER_HOMEPAGE}>
-                    {username}
-                </Link>
-                <SignOutButton/>
+                <div className="userpage-link">
+                    <Link to = {ROUTES.USER_HOMEPAGE}>
+                        {username}
+                    </Link>
+                </div>
+                <div className="signout-button">
+                    <SignOutButton/>
+                </div>
             </div>
         </div>
     );

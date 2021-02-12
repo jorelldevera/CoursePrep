@@ -38,14 +38,29 @@ function UserHomepage() {
 
    
     return (
-        <div className="feed-container">
-            <div id= "middle-feed" className="center-feed">
-                <h1>Saved Questions</h1>
-                <div className="feed-options">
-                    sorting?
+        <div class="row">
+            <div class="column">
+                <div className="feed-container">
+                    <div id= "middle-feed" className="center-feed">
+                        <h1>Saved Questions</h1>
+                        <div className="feed-options">
+                            sorting?
+                        </div>
+                        <div className="question-stream">
+                            {metaSnapshots && metaSnapshots.reverse().map(question => <QuestionCard key={question.key} id={question.key} data={question.val()}/>)}
+                        </div>
+                    </div>
                 </div>
-                <div className="question-stream">
-                    {metaSnapshots && metaSnapshots.reverse().map(question => <QuestionCard key={question.key} id={question.key} data={question.val()}/>)}
+            </div>
+            <div class="column">
+                <div id= "middle-feed" className="center-feed">
+                    <h1>Created Quizzes</h1>
+                    <div className="feed-options">
+
+                    </div>
+                    <div className="quiz-stream">
+                        
+                    </div>
                 </div>
             </div>
         </div>
