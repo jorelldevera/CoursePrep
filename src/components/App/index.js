@@ -52,7 +52,7 @@ function App(props)  {
                         <Route path={ROUTES.LOG_IN} component={LoginPage}/>
                         <Route path={ROUTES.QUIZ_TEST} component={QuizPage}/>
                         <Route path={ROUTES.USER_TEST} component={UserPage}/>
-                        <Route path={ROUTES.USER_PAGE} component={UserHomepage}/>
+                        <Route path={ROUTES.USER_HOMEPAGE} component={UserHomepage}/>
                     </div>
             </Router>
         </div>

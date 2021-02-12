@@ -1,23 +1,51 @@
-import React, {useEffect} from 'react';
+import React, { useState, useEffect} from 'react'
 import firebase from 'firebase';
 import './userhomepage.css';
 import QuestionCard from '../QuestionCard';
 import { useList } from 'react-firebase-hooks/database';
 
 
+
+
+
 function UserHomepage() {
 
-    const [snapshots, loading, error] = useList(firebase.database().ref("question_metadata").orderByChild("creation_time").limitToLast(25));
+    const [metaSnapshots, setMetaSnapshots] = useState([]);
 
+
+    useEffect( () => {
+
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                var userID = firebase.auth().currentUser.uid
+                const query = "questions_saved/" + userID + "/";
+                var qid_ref = firebase.database().ref(query)
+                qid_ref.once('value').then(function(snapshot) {
+            
+                    snapshot.forEach(function(childSnapshot) {
+                        var metadata = firebase.database().ref("question_metadata").orderByKey().equalTo(childSnapshot.key)
+                        metadata.once('value').then(function(meta_snapshot) {
+                            setMetaSnapshots(prevSnapshots => [...prevSnapshots, meta_snapshot.child(childSnapshot.key)])
+                        })
+                    })
+                })
+            } 
+          });
+
+    },[]);
+
+
+
+   
     return (
         <div className="feed-container">
             <div id= "middle-feed" className="center-feed">
-                <h1>Course Title</h1>
+                <h1>Saved Questions</h1>
                 <div className="feed-options">
-                    sort menu and tag selector goes here
+                    sorting?
                 </div>
                 <div className="question-stream">
-                    {snapshots && snapshots.reverse().map(question => <QuestionCard key={question.key} id={question.key} data={question.val()}/>)}
+                    {metaSnapshots && metaSnapshots.reverse().map(question => <QuestionCard key={question.key} id={question.key} data={question.val()}/>)}
                 </div>
             </div>
         </div>

@@ -11,6 +11,11 @@ function Feed() {
 
     const [snapshots, loading, error] = useList(firebase.database().ref("question_metadata").orderByChild("creation_time").limitToLast(25));
 
+    if (snapshots[8]) {
+        console.log(snapshots)
+    }
+    
+
     return (
         <div className="feed-container">
             <Sidebar/>

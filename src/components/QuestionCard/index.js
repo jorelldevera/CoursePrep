@@ -259,6 +259,7 @@ function TrueFalse(props) {
     
     // query
     const query = "truefalse/" + props.id;
+    console.log(query)
     useEffect( () => {
         firebase.database().ref(query).once('value').then(function(snapshot){
             if (snapshot.val() === null)
