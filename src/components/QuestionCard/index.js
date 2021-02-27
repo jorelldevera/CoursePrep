@@ -76,8 +76,13 @@ function QuestionCard(props) {
     const starredRef = firebase.database().ref(query); 
     useEffect( () => {
         starredRef.once('value').then(function(snapshot){
-            console.log(snapshot.val());
-            console.log("ding");
+            snapshot.forEach(function(childSnapshot) {
+                var val = childSnapshot.val();
+
+                if (val === props.id) {
+                    setIsFavorite(true);
+                }
+            })
         })
 
         // for each in snapshot.val()
@@ -108,20 +113,26 @@ function QuestionCard(props) {
 	}
 
     const handeStarBorder = () => {
-        // create a query
-        var query = 'questions_saved/' + uid + "/";
+        // push the id of this question to the database
+        starredRef.push(props.id);
 
-        // add to the database
-        starredRef.set({
-            question_id: props.id
-        });
-
-        // switch from border to filled
         setIsFavorite(true);
     }
 
     const handleStarFilled = () => {
-        // remove from the database
+        var key = "";
+        starredRef.once('value').then(function(snapshot){
+            snapshot.forEach(function(childSnapshot) {
+                var val = childSnapshot.val();
+
+                if (val === props.id) {
+                    // remove this snapshot
+                    key = childSnapshot.key;
+                    console.log("key=" + key + " val= " + val + " props.id=" + props.id);
+                    starredRef.child(key).remove();
+                }
+            })
+        })
 
         // switch from filled to border
         setIsFavorite(false);
