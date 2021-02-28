@@ -11,11 +11,58 @@ import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormGroup from '@material-ui/core/FormGroup';
 import TextField from '@material-ui/core/TextField';
+import './questioncard.css'
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider} from '@material-ui/core/styles';
 
-const textcolor = "#0A0B09";
+const textcolor = "#ffffff";
+
+const theme = {
+    overrides: {
+      MuiRadio: {
+        root: {
+          color: 'white',
+        },
+        colorSecondary: {
+          '&$checked': {
+            color: 'white',
+          },
+        },
+      },
+
+      MuiCheckbox: {
+        root: {
+          color: 'white',
+        },
+        colorSecondary: {
+          '&$checked': {
+            color: 'white',
+          },
+        },
+        colorText: {
+            color: 'white',
+        },
+      },
+    },
+  }
+  
+  const muiTheme = createMuiTheme(theme)
+  
+
+
+
 const useStyles = makeStyles((theme) => ({
+
+    floatingLabelFocusStyle: {
+        color: '#707070',
+    },
+
+    multilineColor:{
+        color:textcolor,
+    },
+
     questionContainer: {
-        background: "#e3e7e9",
+        background: "#1a1a1c",
         marginBottom: "6px",
         borderRadius: "13px",
         paddingLeft: "6px",
@@ -94,12 +141,14 @@ function QuestionCard(props) {
     }
     
     return (
+        <ThemeProvider theme={muiTheme}>
         <div className={classes.questionContainer}>
             <header className={classes.questionHeader}>
 				<h2 className={classes.questionHeaderText}>{text}</h2>
 			</header>
             {buildQuestionType(type)}
         </div>
+        </ThemeProvider>
     );
 }
 
@@ -124,7 +173,7 @@ function MultipleChoice(props) {
     const classes = useStyles();
     const [selection, setSelection] = React.useState('');
     const [error, setError] = React.useState(false);
-    const [helperText, setHelperText] = React.useState('Choose wisely');
+    const [helperText, setHelperText] = React.useState('');
     
     const handleRadioChange = (event) => {
         // removes helper text when a radio is selected
@@ -164,7 +213,7 @@ function MultipleChoice(props) {
                         {renderOptions}
 					</RadioGroup>
 					<FormHelperText>{helperText}</FormHelperText>
-					<Button type="submit" variant="contained" color="secondary" className={classes.button}>
+					<Button className = "check-answer-button" type="submit" variant="contained" color="secondary" >
 						Check Answer
                 </Button>
 				</FormControl>
@@ -193,7 +242,7 @@ function MultipleSelect(props) {
 
     const [selections, setSelections] = useState([]);
     const [error, setError] = useState(false);
-    const [helperText, setHelperText] = useState('Choose wisely');
+    const [helperText, setHelperText] = useState('');
 
     const classes = useStyles();
 
@@ -240,11 +289,11 @@ function MultipleSelect(props) {
 			<form onSubmit={handleSubmit}>
 				<FormControl component="fieldset" error={error} className={classes.formControl}>
 					{/* <FormLabel component="legend">Pop quiz: Material-UI is...</FormLabel> */}
-					<FormGroup aria-label="quiz" name="quiz" value={selections} onChange={handleRadioChange} className={classes.formGroup}>
+					<FormGroup aria-label="quiz" name="quiz" value={selections} onChange={handleRadioChange}>
                         {renderOptions}
 					</FormGroup>
 					<FormHelperText>{helperText}</FormHelperText>
-					<Button type="submit" variant="contained" color="secondary" className={classes.button}>
+					<Button type="submit" variant="contained" color="secondary" className="check-answer-button">
 						Check Answer
                 </Button>
 				</FormControl>
@@ -276,7 +325,7 @@ function TrueFalse(props) {
     const classes = useStyles();
     const [selection, setSelection] = React.useState('');
     const [error, setError] = React.useState(false);
-    const [helperText, setHelperText] = React.useState('Choose wisely');
+    const [helperText, setHelperText] = React.useState('');
     
     const handleRadioChange = (event) => {
         // removes helper text when a radio is selected
@@ -312,7 +361,7 @@ function TrueFalse(props) {
 					</RadioGroup>
 					<FormHelperText>{helperText}</FormHelperText>
 
-					<Button type="submit" variant="contained" color="secondary" className={classes.button}>
+					<Button type="submit" variant="contained" color="secondary" className = "check-answer-button">
 						Check Answer
                     </Button>
 				</FormControl>
@@ -337,13 +386,19 @@ function WrittenAnswer(props) {
 				<FormControl component="fieldset" className={classes.formControl}>
                     <TextField
                     id="standard-multiline-static"
-                    label="Multiline"
+                    label="Input text here"
                     multiline
                     rows={4}
-                    defaultValue="Default Value"
+                    defaultValue=""
+                    InputProps={{
+                        className: classes.multilineColor
+                    }}
+                    InputLabelProps={{
+                        className: classes.floatingLabelFocusStyle,
+                    }}
                     />
 
-					<Button type="submit" variant="contained" color="secondary" className={classes.button}>
+					<Button type="submit" variant="contained" color="secondary" className = "check-answer-button">
 						Check Answer
                     </Button>
 				</FormControl>

@@ -6,3 +6,7 @@
 form {
     box-shadow: none;
 }
+
+.check-answer-button{
+    background-color: blue !important;
+}
