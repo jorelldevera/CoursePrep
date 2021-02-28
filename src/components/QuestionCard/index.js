@@ -113,6 +113,9 @@ const useStyles = makeStyles((theme) => ({
     button: {
         margin: theme.spacing(1, 1, 0, 0),
     },
+    helperText: {
+        color: 'white',
+    }
 }));
 
 function QuestionCard(props) {
@@ -235,7 +238,7 @@ function MultipleChoice(props) {
 					<RadioGroup aria-label="quiz" name="quiz" value={selection} onChange={handleRadioChange}>
                         {renderOptions}
 					</RadioGroup>
-					<FormHelperText>{helperText}</FormHelperText>
+					<FormHelperText className={classes.helperText}>{helperText}</FormHelperText>
 					<Button className = "check-answer-button" type="submit" variant="contained" color="secondary" >
 						Check Answer
                 </Button>
