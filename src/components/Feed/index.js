@@ -17,7 +17,7 @@ function Feed() {
     
 
     return (
-        <div className="feed-container">
+        <div className="feed-ctnr">
             <Sidebar/>
             <div id= "middle-feed" className="center-feed">
                 <h1>Course Title</h1>
@@ -29,7 +29,10 @@ function Feed() {
                     <div className="question-stream-end"></div>
                 </div>
             </div>
-            <CreateQuestionButton/>
+            <div className = "rightside-buttons">
+                <CreateQuestionButton/>
+            </div>
+            
         </div>
     );
 }

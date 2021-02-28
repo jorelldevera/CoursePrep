@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     },
     formControl: {
         marginBottom: "24px",
-        width: "80%",
+        width: "100%",
     },
     formControlLabel: {
         color: textcolor,

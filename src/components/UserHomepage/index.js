@@ -3,7 +3,7 @@ import firebase from 'firebase';
 import './userhomepage.css';
 import QuestionCard from '../QuestionCard';
 import { useList } from 'react-firebase-hooks/database';
-
+import Sidebar from '../Sidebar';
 
 
 
@@ -38,29 +38,16 @@ function UserHomepage() {
 
    
     return (
-        <div class="row">
-            <div class="column">
-                <div className="feed-container">
-                    <div id= "middle-feed" className="center-feed">
-                        <h1>Saved Questions</h1>
-                        <div className="feed-options">
-                            sorting?
-                        </div>
-                        <div className="question-stream">
-                            {metaSnapshots && metaSnapshots.reverse().map(question => <QuestionCard key={question.key} id={question.key} data={question.val()}/>)}
-                        </div>
-                    </div>
+        <div className="feed-ctnr">
+            <Sidebar/>
+            <div id= "middle-feed" className="center-feed">
+                <h1>Saved Questions</h1>
+                <div className="feed-options">
+                    <p></p>
                 </div>
-            </div>
-            <div class="column">
-                <div id= "middle-feed" className="center-feed">
-                    <h1>Created Quizzes</h1>
-                    <div className="feed-options">
-
-                    </div>
-                    <div className="quiz-stream">
-                        
-                    </div>
+                <div className="question-stream">
+                    {metaSnapshots && metaSnapshots.reverse().map(question => <QuestionCard key={question.key} id={question.key} data={question.val()}/>)}
+                    <div className="question-stream-end"></div>
                 </div>
             </div>
         </div>
