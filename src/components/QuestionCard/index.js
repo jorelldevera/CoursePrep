@@ -114,21 +114,24 @@ function QuestionCard(props) {
 
     const handeStarBorder = () => {
         // push the id of this question to the database
-        starredRef.push(props.id);
+        // starredRef.push(props.id);
+        starredRef.update({
+            [props.id]: true
+        });
 
         setIsFavorite(true);
     }
 
     const handleStarFilled = () => {
-        var key = "";
+        // var key = "";
         starredRef.once('value').then(function(snapshot){
             snapshot.forEach(function(childSnapshot) {
-                var val = childSnapshot.val();
+                var key = childSnapshot.key;
 
-                if (val === props.id) {
+                if (key === props.id) {
                     // remove this snapshot
                     key = childSnapshot.key;
-                    console.log("key=" + key + " val= " + val + " props.id=" + props.id);
+                    // console.log("key=" + key + " val= " + val + " props.id=" + props.id);
                     starredRef.child(key).remove();
                 }
             })
