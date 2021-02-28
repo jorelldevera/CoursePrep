@@ -42,11 +42,65 @@
     transition: all .2s ease;
 }
 
+.modal-content-login{
+  background-color: #fdfdfd;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border-radius: 25px;
+  width: 25%; /* Could be more or less, depending on screen size */
+  color: black;
+  text-align: center;
+  /* offset-x | offset-y | blur-radius | spread-radius | color */
+  box-shadow: 0px 4px 2px 1px rgba(0,0,0,0.25);
+  transition: 2s ease;
+  opacity: 1;
+  color: black;
+  transform: scale(2);
+  transition: all .2s ease;
+}
 
 .form-item{
   text-align: left;
   width: 75%;
   margin: 0px;
+  margin-left: 10%;
+}
+
+.form-item h2{
+  font-weight: 400;
+  font-size: 1.2em;
+}
+
+.form-item input{
+  font-weight: 400;
+  font-size: 1.0em;
+}
+
+.login-modal-button{
+  background-color: #764EE9 !important;
+  width: 30%;
+}
+
+.login-modal-button * {
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  text-transform: none;
+  font-size: large;
+  font-weight: 500;
+}
+
+.signup-modal-button{
+  background-color: #764EE9 !important;
+  width: 30%;
+  margin-bottom: 3% !important;
+}
+
+.signup-modal-button * {
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  text-transform: none;
+  font-size: large;
+  font-weight: 500;
 }
  
   

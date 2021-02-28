@@ -22,6 +22,11 @@
     scrollbar-width: none;  /* Firefox */
 }
 
+.question-stream-end {
+    width: 1px;
+    height: 200px;
+}
+
 .center-feed::-webkit-scrollbar {
     display: none;
   }

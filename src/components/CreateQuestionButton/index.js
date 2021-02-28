@@ -106,7 +106,7 @@ function CreateQuestionButton () {
     return (
 
         <div>
-            <Button  onClick={()=> {handleBtnClick()}}> Create Question </Button>
+            <Button className = "create-question-button" variant = "contained" color = "default"  onClick={()=> {handleBtnClick()}}> + Create Question </Button>
             <div id="questionModal" class="modal">
 
                 <div id="question-content" class="modal-content">

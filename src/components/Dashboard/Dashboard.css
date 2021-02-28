@@ -1,38 +1,29 @@
 .dashboard-container{
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    overflow: hidden;
-}
-
-
-.dashboard-center{
-    padding-left: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: column;
-    position: absolute;
-    left: 28%;
-    top: 12%;
-}
-
-.classes-grid{
-    width: 991px;
-    height: 600px;
-    margin-right: 100px;
     display: grid;
-    grid-template-columns: 500px 400px;
-    grid-row: auto auto;
+    grid-template-columns: 25% 70% 5%;
+    overflow: hidden
+}
+
+
+
+
+.classes-list{
+    width: 100%;
+    height: 60%;
+    display: grid;
+    grid-template-columns: 100%;
     grid-column-gap: 0px;
-    grid-row-gap: 0px;
+    grid-row-gap: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 10px;
 }
 
 .dashboard-title{
-    height: 200px;
     padding-bottom: 20px;
 }
 
 .dashboard-title h1{
-    font-size: 6em;
+    font-size: 3em;
+    text-align: center;
 }

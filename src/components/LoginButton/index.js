@@ -48,9 +48,9 @@ function LoginButton() {
 
 
             <div id="myModal" className="modal">
-                <div id="myModalContent" className="modal-content" >
+                <div id="myModalContent" className="modal-content-login" >
                     <span class="close" onClick={()=>{handleSpanClick()}}>&times;</span>
-                    <LoginPage/>     
+                    <LoginPage/>   
                 </div>
             </div>
         </div>

@@ -4,8 +4,10 @@ import { compose } from 'recompose';
 
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
-
+import '../../style/popup.css';
 import './signup.css';
+
+import Button from '@material-ui/core/Button';
 
 const SignUpPage = () => (
     <div>
@@ -74,46 +76,60 @@ class SignUpFormBase extends Component {
             username === '';
 
         return (
-            <form onSubmit={this.onSubmit}>
-                <div className='signup-fields'>
-                    <input
-                        name="username"
-                        value={username}
-                        onChange={this.onChange}
-                        type="text"
-                        placeholder="Full Name"
-                        />
-                        <br></br>
-                    <input
-                        name="email"
-                        value={email}
-                        onChange={this.onChange}
-                        type="text"
-                        placeholder="Email Address"
-                        />
-                        <br></br>
-                    <input
-                        name="passwordOne"
-                        value={passwordOne}
-                        onChange={this.onChange}
-                        type="password"
-                        placeholder="Password"
-                        />
-                        <br></br>
-                    <input
-                        name="passwordTwo"
-                        value={passwordTwo}
-                        onChange={this.onChange}
-                        type="password"
-                        placeholder="Confirm Password"
-                        />
-                        <br></br>
-                </div>
-                <br></br>
-                <button disabled={isInvalid} type="submit">Sign Up</button>
+            <div className="login-content">
+                <form onSubmit={this.onSubmit}>
+                    <div>
+                        <div className="form-item">
+                            <h2>Full Name:</h2>
+                            <input
+                                name="username"
+                                value={username}
+                                onChange={this.onChange}
+                                type="text"
+                                placeholder="Full Name"
+                                />
+                                <br></br>
+                        </div>
+                        <div className="form-item">
+                            <h2>Email:</h2>
+                            <input
+                                name="email"
+                                value={email}
+                                onChange={this.onChange}
+                                type="text"
+                                placeholder="Email Address"
+                                />
+                                <br></br>
+                        </div>
+                        <div className="form-item">
+                            <h2>Password:</h2>
+                            <input
+                                name="passwordOne"
+                                value={passwordOne}
+                                onChange={this.onChange}
+                                type="password"
+                                placeholder="Password"
+                                />
+                                <br></br>
+                        </div>
+                        <div className="form-item">
+                            <h2>Re-Type Password:</h2>
+                            <input
+                                name="passwordTwo"
+                                value={passwordTwo}
+                                onChange={this.onChange}
+                                type="password"
+                                placeholder="Password"
+                                />
+                                <br></br>
+                        </div>
+                    </div>
+                    <br></br>
+                    <Button className = "signup-modal-button" disabled={isInvalid} type="submit">Sign Up</Button>
 
-                {error && <p>{error.message}</p>}
-            </form>
+                    {error && <p>{error.message}</p>}
+                </form>
+            </div>
         );
     }
 }

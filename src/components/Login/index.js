@@ -5,8 +5,9 @@ import { compose } from 'recompose';
 import { SignUpLink } from '../SignUp';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
+import '../../style/popup.css';
 
-
+import Button from '@material-ui/core/Button';
 
 const LoginPage = () => (
     <div>
@@ -55,7 +56,7 @@ class LoginFormBase extends Component {
         const isInvalid = password === '' || email === '';
 
         return (
-            <form onSubmit={this.onSubmit}>
+            <form className = "login-content" onSubmit={this.onSubmit}>
                 <div className="form-item">
                     <h2>Email: </h2>
                     <input
@@ -78,7 +79,7 @@ class LoginFormBase extends Component {
                     />
                 </div>
                 <br></br>
-                <button disabled={isInvalid} type="submit"> Sign In </button>
+                <Button className = "login-modal-button"disabled={isInvalid} type="submit"> Sign In </Button>
 
                 {error && <p>{error.message}</p>}
             </form>

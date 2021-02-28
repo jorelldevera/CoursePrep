@@ -1,18 +1,18 @@
 .sidebar-container {
-    width: 297px;
-    height: 766px;
-    padding-left: 20px;
-    box-shadow: 5px 5px 5px grey;
-    position: relative;
+    
 }
+
+.sidebar-title{
+    text-align: center;
+}
+
 .sidebar{
     background-color: #E7E5E1;
     box-shadow: -6px 6px 4px rgba(0, 0, 0, 0.25);
     border-radius: 23px;
-    height: 750px;
-    width: 15%;
-    position: absolute;
-    left: 5vw;
-    top: 18vh;
+    height: 100%;
+    width: 90%;
+    padding: 10px;
     transition: all .2s ease;
+    align-content: center;
 }

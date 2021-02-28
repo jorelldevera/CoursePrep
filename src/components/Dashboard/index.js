@@ -12,16 +12,17 @@ function Dashboard() {
                 <div className = "dashboard-title">
                     <h1>Courses</h1>
                 </div>
-                <div className = "classes-container">
-                    <div className = "classes-grid">
-                        <ClassCard/>
-                        <ClassCard/>
-                        <ClassCard/>
-                        <ClassCard/>
-                    </div>
+                <div className = "classes-list">
+                    <ClassCard/>
+                    <ClassCard/>
+                    <ClassCard/>
+                    <ClassCard/>
+                    <ClassCard/>
+                    <ClassCard/>
+                    <ClassCard/>
+                    <ClassCard/>
                 </div>
             </div>
-            <RightMenu/>
         </div>
     );
 }

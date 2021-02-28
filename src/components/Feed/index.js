@@ -26,6 +26,7 @@ function Feed() {
                 </div>
                 <div className="question-stream">
                     {snapshots && snapshots.reverse().map(question => <QuestionCard key={question.key} id={question.key} data={question.val()}/>)}
+                    <div className="question-stream-end"></div>
                 </div>
             </div>
             <CreateQuestionButton/>

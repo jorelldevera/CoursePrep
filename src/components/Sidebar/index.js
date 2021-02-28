@@ -4,12 +4,10 @@ function Sidebar(){
 
     return(
         <div id="sideBar" className="sidebar">
-                this is the left menu
-                <div className="my-quizzes">
-
-                </div>
-                <div className="course-quizzes">
-
+                <div className = "sidebar-container">
+                    <div className = "sidebar-title">
+                        <h1>Menu</h1>
+                    </div>
                 </div>
             </div>
     );
