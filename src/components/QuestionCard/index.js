@@ -14,6 +14,7 @@ import TextField from '@material-ui/core/TextField';
 import './questioncard.css'
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider} from '@material-ui/core/styles';
+import { green } from '@material-ui/core/colors';
 
 const textcolor = "#ffffff";
 
@@ -43,10 +44,31 @@ const theme = {
             color: 'white',
         },
       },
+
+      MuiTextField: {
+        colorText: {
+            color: 'green',
+        }
+      }
     },
   }
   
-  const muiTheme = createMuiTheme(theme)
+  const muiTheme = createMuiTheme({
+      palette: {
+          primary: {
+            light: "#448572",
+            main: "#448572",
+            dark: "#448572",
+            contrast: "#448572",
+          },
+          secondary: {
+            light: "#FFFFFF",
+            main: "#FFFFFF",
+            dark: "#FFFFFF",
+            contrast: "#FFFFFF",
+          },
+      }
+  })
   
 
 
@@ -66,6 +88,7 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: "6px",
         borderRadius: "13px",
         paddingLeft: "6px",
+        paddingRight: '6px',
         boxShadow: "inset 0px 4px 4px rgba(0, 0, 0, 0.25)",
     },
     questionHeaderText: {
@@ -386,7 +409,7 @@ function WrittenAnswer(props) {
 				<FormControl component="fieldset" className={classes.formControl}>
                     <TextField
                     id="standard-multiline-static"
-                    label="Input text here"
+                    label="Type your answer here"
                     multiline
                     rows={4}
                     defaultValue=""
@@ -396,6 +419,7 @@ function WrittenAnswer(props) {
                     InputLabelProps={{
                         className: classes.floatingLabelFocusStyle,
                     }}
+                    color="primary"
                     />
 
 					<Button type="submit" variant="contained" color="secondary" className = "check-answer-button">
