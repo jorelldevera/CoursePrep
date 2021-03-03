@@ -73,6 +73,18 @@ const theme = {
 
 
 
+// Question header imports
+import StarIcon from '@material-ui/icons/Star';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Grow from '@material-ui/core/Grow';
+import Paper from '@material-ui/core/Paper';
+import Popper from '@material-ui/core/Popper';
+import MenuItem from '@material-ui/core/MenuItem';
+import MenuList from '@material-ui/core/MenuList';
+
+const textcolor = "#0A0B09";
 const useStyles = makeStyles((theme) => ({
 
     floatingLabelFocusStyle: {
@@ -100,6 +112,11 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: "space-between",
         alignItems: "center",
     },
+    questionHeaderRight: {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center,"
+    },
     formControl: {
         marginBottom: "24px",
         width: "100%",
@@ -121,6 +138,82 @@ const useStyles = makeStyles((theme) => ({
 function QuestionCard(props) {
     const { avg_score, course_ID, creation_time, department_ID, text, times_answered, type } = props.data;
     const classes = useStyles();
+
+    var uid = firebase.auth().currentUser.uid;
+
+    // for header dropdown
+    const [open, setOpen] = React.useState(false);
+    const anchorRef = React.useRef(null);
+    const [isFavorite, setIsFavorite] = React.useState(false);
+
+    var query = 'questions_saved/' + uid + "/";
+    const starredRef = firebase.database().ref(query); 
+    useEffect( () => {
+        starredRef.once('value').then(function(snapshot){
+            snapshot.forEach(function(childSnapshot) {
+                var val = childSnapshot.val();
+
+                if (val === props.id) {
+                    setIsFavorite(true);
+                }
+            })
+        })
+
+        // for each in snapshot.val()
+        // if the value == props.id
+        // setIsFavorite to true
+    }, [])
+
+    const handleMenuToggle = () => {
+		// opens the dropdown
+		setOpen((prevOpen) => !prevOpen);
+	};
+
+	const handleClose = (event) => {
+		// closes the dropdown
+		if (anchorRef.current && anchorRef.current.contains(event.target)) {
+			return;
+		}
+
+		setOpen(false);
+	};
+
+    function handleListKeyDown(event) {
+		// not sure what this does
+		if (event.key === 'Tab') {
+			event.preventDefault();
+			setOpen(false);
+		}
+	}
+
+    const handeStarBorder = () => {
+        // push the id of this question to the database
+        // starredRef.push(props.id);
+        starredRef.update({
+            [props.id]: true
+        });
+
+        setIsFavorite(true);
+    }
+
+    const handleStarFilled = () => {
+        // var key = "";
+        starredRef.once('value').then(function(snapshot){
+            snapshot.forEach(function(childSnapshot) {
+                var key = childSnapshot.key;
+
+                if (key === props.id) {
+                    // remove this snapshot
+                    key = childSnapshot.key;
+                    // console.log("key=" + key + " val= " + val + " props.id=" + props.id);
+                    starredRef.child(key).remove();
+                }
+            })
+        })
+
+        // switch from filled to border
+        setIsFavorite(false);
+    }
 
     // read type to create a question
     function buildQuestionType(type) {
@@ -170,7 +263,51 @@ function QuestionCard(props) {
         <ThemeProvider theme={muiTheme}>
         <div className={classes.questionContainer}>
             <header className={classes.questionHeader}>
-				<h2 className={classes.questionHeaderText}>{text}</h2>
+                <div className={classes.questionHeaderLeft}>
+				    <h2 className={classes.questionHeaderText}>{text}</h2>
+                </div>
+
+                <div className={classes.questionHeaderRight}>
+                    {isFavorite === true ? (
+                        <Button
+                            onClick={handleStarFilled}>
+                            <StarIcon />
+                        </Button>
+                    ) : isFavorite === false ? (
+                        <Button
+                            onClick={handeStarBorder}>
+                            <StarBorderIcon />
+                        </Button>
+                    ) : null}
+
+                    <Button
+                        ref={anchorRef}
+                        aria-controls={open ? 'menu-list-grow' : undefined}
+                        aria-haspopup="true"
+                        onClick={handleMenuToggle}
+                    >
+                        <ArrowDropDownIcon />
+                    </Button>
+                    <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
+                        {({ TransitionProps, placement }) => (
+                            <Grow
+                                {...TransitionProps}
+                                style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+                            >
+                                <Paper>
+                                    <ClickAwayListener onClickAway={handleClose}>
+                                        <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+                                            <MenuItem onClick={handleClose}>Quiz 1</MenuItem>
+                                            <MenuItem onClick={handleClose}>{uid}</MenuItem>
+                                            <MenuItem onClick={handleClose}>Quiz 2</MenuItem>
+                                            <MenuItem onClick={handleClose}>New Quiz</MenuItem>
+                                        </MenuList>
+                                    </ClickAwayListener>
+                                </Paper>
+                            </Grow>
+                        )}
+                    </Popper>
+                </div>
 			</header>
             {buildQuestionType(type)}
         </div>
