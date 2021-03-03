@@ -1,15 +1,39 @@
 .landing-header {
-height: 0px;
-width: 0px;
-left: 0px;
-top: 0px;
-border-radius: nullpx;
-font-family: Rubik;
-font-size: 333px;
-font-style: normal;
-font-weight: 700;
-line-height: 248px;
-letter-spacing: 0em;
-text-align: left;
+    height: 0px;
+    width: 0px;
+    left: 0px;
+    top: 0px;
+    border-radius: nullpx;
+    font-family: Rubik;
+    font-size: 333px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 248px;
+    letter-spacing: 0em;
+    text-align: left;
+}
 
+.landing-center-container {
+    display: flex;
+    flex-direction: row;
+    flex-flow: center;
+    justify-content: center;
+}
+
+.landing-text {
+    color: #f4f5f8;
+    font-size: 46px;
+}
+
+.landing-left {
+    max-width: 30%;
+}
+
+p {
+    color: #f4f5f8;
+}
+
+.landing-img {
+    max-width: 650px;
+    max-height: 467px;
 }

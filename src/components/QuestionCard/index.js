@@ -16,6 +16,17 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider} from '@material-ui/core/styles';
 import { green } from '@material-ui/core/colors';
 
+// Question header imports
+import StarIcon from '@material-ui/icons/Star';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import Grow from '@material-ui/core/Grow';
+import Paper from '@material-ui/core/Paper';
+import Popper from '@material-ui/core/Popper';
+import MenuItem from '@material-ui/core/MenuItem';
+import MenuList from '@material-ui/core/MenuList';
+
 const textcolor = "#ffffff";
 
 const theme = {
@@ -73,18 +84,8 @@ const theme = {
 
 
 
-// Question header imports
-import StarIcon from '@material-ui/icons/Star';
-import StarBorderIcon from '@material-ui/icons/StarBorder';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import Grow from '@material-ui/core/Grow';
-import Paper from '@material-ui/core/Paper';
-import Popper from '@material-ui/core/Popper';
-import MenuItem from '@material-ui/core/MenuItem';
-import MenuList from '@material-ui/core/MenuList';
 
-const textcolor = "#0A0B09";
+// const textcolor = "#0A0B09";
 const useStyles = makeStyles((theme) => ({
 
     floatingLabelFocusStyle: {
