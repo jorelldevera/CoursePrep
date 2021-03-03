@@ -152,17 +152,14 @@ function QuestionCard(props) {
     useEffect( () => {
         starredRef.once('value').then(function(snapshot){
             snapshot.forEach(function(childSnapshot) {
-                var val = childSnapshot.val();
+                var val = childSnapshot.key;
 
+                console.log(val + " ding");
                 if (val === props.id) {
                     setIsFavorite(true);
                 }
             })
         })
-
-        // for each in snapshot.val()
-        // if the value == props.id
-        // setIsFavorite to true
     }, [])
 
     const handleMenuToggle = () => {
