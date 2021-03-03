@@ -40,7 +40,8 @@ const TopBarAuth = () => {
     return(
         <div className = "top-bar-container">
             <div className = "top-bar-left">
-                <Link to = {ROUTES.DASH}>
+                <Link className="top-bar-left-link" to = {ROUTES.DASH}>
+                    <img src="logo.png" className="logo"/>
                     <h1>
                         CoursePrep
                     </h1>
@@ -69,6 +70,7 @@ const TopBarNonAuth = () => {
     return(
         <div className = "top-bar-container">
             <div className = "top-bar-left">
+                <img src="logo.png" className="logo"/>
                 <h1>
                     CoursePrep
                 </h1>

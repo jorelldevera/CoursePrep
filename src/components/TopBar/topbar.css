@@ -8,11 +8,18 @@
 
 .top-bar-left{
     width: 500px;
+    display: flex;
+    align-items: center;
+}
+
+.top-bar-left-link {
+    display: flex;
+    align-items: center;
 }
 
 .top-bar-left h1 {
     color: white;
-    margin-left: 50px;
+    margin-left: 10px;
 }
 
 .top-bar-right{
@@ -32,4 +39,10 @@
     align-self: center;
     padding-right: 50%;
     block-size: auto;
+}
+
+.logo {
+    max-width: 69px;
+    max-height: 53px;
+    margin-left: 50px;
 }
