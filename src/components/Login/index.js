@@ -11,7 +11,9 @@ import Button from '@material-ui/core/Button';
 
 const LoginPage = () => (
     <div>
-        <h1>Login</h1>
+        <div className = "title-text">
+            <h1>Login</h1>
+        </div>
         <LoginForm />
         <SignUpLink />
     </div>

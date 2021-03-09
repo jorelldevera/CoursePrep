@@ -1,5 +1,5 @@
 .sidebar-container {
-    
+    display: grid;
 }
 
 .sidebar-title{

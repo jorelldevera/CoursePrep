@@ -15,6 +15,7 @@ import './questioncard.css'
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider} from '@material-ui/core/styles';
 import { green } from '@material-ui/core/colors';
+// import { white } from '@material-ui/core/colors';
 
 // Question header imports
 import StarIcon from '@material-ui/icons/Star';
@@ -269,12 +270,12 @@ function QuestionCard(props) {
                     {isFavorite === true ? (
                         <Button
                             onClick={handleStarFilled}>
-                            <StarIcon />
+                            <StarIcon color="primary"/>
                         </Button>
                     ) : isFavorite === false ? (
                         <Button
                             onClick={handeStarBorder}>
-                            <StarBorderIcon />
+                            <StarBorderIcon style={{ color: green[500] }}/>
                         </Button>
                     ) : null}
 

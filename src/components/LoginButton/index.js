@@ -46,7 +46,6 @@ function LoginButton() {
         <div>
             <Button className = "log-in-btn" variant="contained" color="primary" id="myBtn" onClick={()=> {handleBtnClick()}}>Log In</Button>
 
-
             <div id="myModal" className="modal">
                 <div id="myModalContent" className="modal-content-login" >
                     <span class="close" onClick={()=>{handleSpanClick()}}>&times;</span>

@@ -11,7 +11,9 @@ import Button from '@material-ui/core/Button';
 
 const SignUpPage = () => (
     <div>
-        <h1>Sign Up</h1>
+        <div className = "title-text">
+            <h1>Sign Up</h1>
+        </div>
         <SignUpForm />
     </div>
 );
@@ -136,7 +138,7 @@ class SignUpFormBase extends Component {
 
 const SignUpLink = () => (
     <p>
-        Dont have an account? <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
+        
     </p>
 );
 

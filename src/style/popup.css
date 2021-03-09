@@ -119,3 +119,7 @@
     text-decoration: none;
     cursor: pointer;
   }
+
+  .title-text h1{
+    color: #0f0f0f;
+  }
