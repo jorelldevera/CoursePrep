@@ -35,7 +35,11 @@ body{
   overflow: hidden;
 }
 
-h1{
+.h1-black{
+  color: black;
+}
+
+.h1-white {
   color: #f4f5f8;
 }
 

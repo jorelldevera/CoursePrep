@@ -7,10 +7,10 @@ function Dashboard() {
     return(
 
         <div className = 'dashboard-container'>
-            <Sidebar/>
+            <h1></h1>
             <div className = "dashboard-center">
                 <div className = "dashboard-title">
-                    <h1>Courses</h1>
+                    <h1 className = "h1-white">Courses</h1>
                 </div>
                 <div className = "classes-list">
                     <ClassCard/>

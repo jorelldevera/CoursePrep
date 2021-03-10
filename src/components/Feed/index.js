@@ -20,7 +20,7 @@ function Feed() {
         <div className="feed-ctnr">
             <Sidebar/>
             <div id= "middle-feed" className="center-feed">
-                <h1>Course Title</h1>
+                <h1 className = "h1-white">CSCI 241 - Data Structures</h1>
                 <div className="feed-options">
                     {/* todo */}
                 </div>

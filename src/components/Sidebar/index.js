@@ -7,7 +7,7 @@ function Sidebar(){
         <div id="sideBar" className="sidebar">
             <div className = "sidebar-container">
                 <div className = "sidebar-title">
-                    <h1>Menu</h1>
+                    <h1 className = "h1-white">Menu</h1>
                 </div>
                 <div className = "classes-list">
                     <ClassCard/>

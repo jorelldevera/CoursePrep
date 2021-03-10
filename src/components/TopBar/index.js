@@ -52,7 +52,7 @@ const TopBarAuth = () => {
             </div>
             <div className ="top-bar-right">
                 <div className="userpage-link">
-                    <Link to = {ROUTES.USER_HOMEPAGE}>
+                    <Link to = {ROUTES.USER_HOMEPAGE} style={{ textDecoration: 'none', color: "white",}}>
                         <div className = "username-text">
                             {username}
                         </div>

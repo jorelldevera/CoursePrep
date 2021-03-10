@@ -1,5 +1,6 @@
 .sidebar-container {
     display: grid;
+    width: 90%;
 }
 
 .sidebar-title{
@@ -15,4 +16,8 @@
     padding: 10px;
     transition: all .2s ease;
     align-content: center;
+}
+
+.headerwhite {
+    color: #f4f5f8;
 }

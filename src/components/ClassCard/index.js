@@ -13,7 +13,7 @@ function ClassCard(){
     return(
         <Link to = {ROUTES.FEED}>
             <div className = "class-card-container" onClick={()=> {handleClick()}}>
-                <span className = "class-title"><h2>Class Title</h2></span>
+                <span className = "class-title"><h2>CSCI 241 - Data Structures</h2></span>
             </div>
         </Link>
     );

@@ -41,7 +41,7 @@ function UserHomepage() {
         <div className="feed-ctnr">
             <Sidebar/>
             <div id= "middle-feed" className="center-feed">
-                <h1>Saved Questions</h1>
+                <h1 className = "h1-white">Saved Questions</h1>
                 <div className="feed-options">
                     <p></p>
                 </div>

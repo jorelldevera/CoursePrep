@@ -454,7 +454,7 @@ function MultipleSelect(props) {
 					<FormGroup aria-label="quiz" name="quiz" value={selections} onChange={handleRadioChange}>
                         {renderOptions}
 					</FormGroup>
-					<FormHelperText>{helperText}</FormHelperText>
+					<FormHelperText className={classes.helperText}>{helperText}</FormHelperText>
 					<Button type="submit" variant="contained" color="secondary" className="check-answer-button">
 						Check Answer
                 </Button>
@@ -521,7 +521,7 @@ function TrueFalse(props) {
                         <FormControlLabel value="true" control={<Radio />} label="True" className={classes.formControlLabel} />
                         <FormControlLabel value="false" control={<Radio />} label="False" className={classes.formControlLabel} />
 					</RadioGroup>
-					<FormHelperText>{helperText}</FormHelperText>
+					<FormHelperText className={classes.helperText}>{helperText}</FormHelperText>
 
 					<Button type="submit" variant="contained" color="secondary" className = "check-answer-button">
 						Check Answer
