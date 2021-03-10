@@ -83,7 +83,7 @@ class LoginFormBase extends Component {
                 <br></br>
                 <Button className = "login-modal-button"disabled={isInvalid} type="submit"> Sign In </Button>
 
-                {error && <p>{error.message}</p>}
+                {error && <p className = "p-black">{error.message}</p>}
             </form>
         );
     }
