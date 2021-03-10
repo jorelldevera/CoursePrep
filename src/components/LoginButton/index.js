@@ -22,7 +22,7 @@ function LoginButton() {
             modal.style.zIndex = -1;
             modal.style.opacity = 0;
             modal_content.style.transform = "scale(1.2)";
-            appContainer.style.transform = "scale(1)";
+            // appContainer.style.transform = "scale(1)";
         }
     }
 
@@ -31,7 +31,7 @@ function LoginButton() {
         modal.style.zIndex = 1;
         modal.style.opacity = 1;
         modal_content.style.transform = "scale(1)";
-        appContainer.style.transform = "scale(.9)";
+        // appContainer.style.transform = "scale(.9)";
     }
 
     function handleSpanClick(){
@@ -39,7 +39,7 @@ function LoginButton() {
         modal.style.zIndex = -1;
         modal.style.opacity = 0;
         modal_content.style.transform = "scale(1.2)";
-        appContainer.style.transform = "scale(1)";
+        // appContainer.style.transform = "scale(1)";
     }
 
     return(

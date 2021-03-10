@@ -9,6 +9,7 @@ import '../../style/popup.css';
 
 import Button from '@material-ui/core/Button';
 
+
 const LoginPage = () => (
     <div>
         <div className = "title-text">
@@ -46,6 +47,7 @@ class LoginFormBase extends Component {
             });
 
         event.preventDefault();
+        
     };
 
     onChange = event => {
